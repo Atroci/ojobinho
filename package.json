@@ -14,5 +14,5 @@
     "vaga": "node ojobinho.mjs vaga",
     "test": "node --test"
   },
-  "license": "MIT"
+  "license": "Apache-2.0"
 }

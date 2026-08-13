@@ -3,7 +3,8 @@
 </p>
 
 <p align="center">
-  <a href="LICENSE"><img alt="Licença MIT" src="https://img.shields.io/badge/licen%C3%A7a-MIT-147A3D"></a>
+  <a href="LICENSE"><img alt="Licença Apache 2.0" src="https://img.shields.io/badge/licen%C3%A7a-Apache--2.0-147A3D"></a>
+  <a href="https://github.com/Atroci/ojobinho/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/Atroci/ojobinho/actions/workflows/ci.yml/badge.svg"></a>
   <img alt="Node 20 ou superior" src="https://img.shields.io/badge/Node.js-20%2B-147A3D">
   <img alt="Português do Brasil" src="https://img.shields.io/badge/idioma-PT--BR-FFCC29">
   <img alt="Revisão humana obrigatória" src="https://img.shields.io/badge/envio-revis%C3%A3o_humana-002776">
@@ -18,6 +19,7 @@
   <a href="#comece-em-dois-minutos">Começar</a> ·
   <a href="#lista-pública-de-oportunidades">Vagas para testar</a> ·
   <a href="#feito-para-o-mercado-brasileiro">Mercado brasileiro</a> ·
+  <a href="#documentação">Documentação</a> ·
   <a href="#patrocinadores">Patrocinadores</a>
 </p>
 
@@ -116,6 +118,12 @@ reports/                  avaliações geradas
 output/                   materiais adaptados
 ```
 
+## Documentação
+
+- [Guia de uso](docs/guia-de-uso.md): instalação, avaliação e acompanhamento.
+- [Privacidade e uso responsável](docs/privacidade-e-uso-responsavel.md): dados locais, revisão humana e limites.
+- [Como contribuir](CONTRIBUTING.md) e [Código de Conduta](CODE_OF_CONDUCT.md).
+
 ## Patrocinadores
 
 Projetos que ajudam o oJobinho a chegar a mais brasileiros:
@@ -127,24 +135,32 @@ Projetos que ajudam o oJobinho a chegar a mais brasileiros:
         <img src="assets/sponsors/selfproxy.png" alt="SelfProxy" width="360">
       </a><br>
       <strong>SelfProxy</strong><br>
-      Infraestrutura móvel com controle do próprio usuário.
+      Proxy móvel HTTP e SOCKS5 usando o Android e o IP da própria operadora.
     </td>
     <td align="center" width="50%">
       <a href="https://uneia.com.br/">
         <img src="assets/sponsors/uneia.png" alt="UNEIA" width="220">
       </a><br>
       <strong>UNEIA</strong><br>
-      Cursos gratuitos de IA, projetos para portfólio e comunidade de oportunidades.
+      Formação prática e gratuita em IA, projetos de portfólio e comunidade de oportunidades.
     </td>
   </tr>
 </table>
+
+### Como a SelfProxy ajuda
+
+A [SelfProxy](https://selfproxy.app) transforma um Android autorizado em proxy móvel 4G/5G, com HTTP, SOCKS5, credencial por dispositivo e rotação sob demanda. Isso pode ajudar mantenedores a testar, com permissão, acesso e comportamento de páginas públicas de recrutamento em uma conexão móvel real. Não serve para enviar candidaturas, burlar bloqueios, CAPTCHA ou termos de plataformas.
+
+### Agradecimento especial à UNEIA
+
+Obrigado à [UNEIA](https://uneia.com.br/) por manter e compartilhar a lista pública de vagas usada nos testes e por oferecer cursos gratuitos de IA, dados e tecnologia com projetos práticos. A comunidade aproxima aprendizado, portfólio e oportunidades sem prometer contratação.
 
 Patrocínio dá visibilidade e apoio ao projeto. Não altera nota de vaga, recomendação ou ordem de oportunidades.
 
 ## Contribua
 
-Encontrou um portal brasileiro, risco de golpe ou diferença regional que falta? Abra uma issue com exemplo verificável. Não publique currículo, e-mail, telefone ou documento pessoal.
+Encontrou um portal brasileiro, risco de golpe ou diferença regional que falta? Leia [Como contribuir](CONTRIBUTING.md) e abra uma issue com exemplo verificável. Não publique currículo, e-mail, telefone ou documento pessoal.
 
 ## Licença
 
-MIT. Veja [LICENSE](LICENSE).
+Apache 2.0. Veja [LICENSE](LICENSE) e [NOTICE](NOTICE).
