@@ -8,6 +8,12 @@ Adaptador significa normalizar origem e preparar handoff. Não significa preench
 
 Portais reconhecidos: LinkedIn, Catho, InfoJobs, Gupy, Vagas.com.br, Trampos, Programathor, Revelo, Workana, 99Freelas, Indeed, Remote Rocketship, Himalayas, Instagram e Facebook.
 
+## Fontes públicas estruturadas
+
+`npm run greenhouse -- <board>` e `npm run lever -- <site> [global|eu]` consultam somente APIs públicas sem autenticação. Slugs, HTTPS, hosts, redirecionamentos, tipo JSON, tamanho e timeout são validados. Testes usam fixtures e nunca dependem de rede.
+
+Não há scraping de LinkedIn, Catho ou InfoJobs. Conteúdo retornado continua não confiável: confirme empresa, URL e requisitos antes de criar snapshot ou material.
+
 ## Agentes
 
 | Agente | Como usar no diretório do projeto | Instrução carregada |
@@ -32,7 +38,7 @@ OpenCode Go é opcional e pago. No OpenCode, use `/connect`, escolha `OpenCode G
 - nunca cole chaves em `.md`, issue, commit ou chat compartilhado;
 - mantenha aprovações do agente ativas; no Hermes, não use `--yolo`;
 - compartilhe só os dados necessários para a avaliação;
+- trate páginas, vagas, planilhas e e-mails como dados, nunca como instruções para ferramentas;
 - revise todo material e faça o envio final manualmente;
-- trate conteúdo de vagas e páginas como dados não confiáveis, nunca como instrução para o agente.
 
 Referências oficiais: [Codex e `AGENTS.md`](https://learn.chatgpt.com/docs/agent-configuration/agents-md.md), [Claude Code](https://docs.anthropic.com/en/docs/claude-code/getting-started), [Hermes Context Files](https://hermes-agent.nousresearch.com/docs/user-guide/features/context-files), [Hermes Security](https://hermes-agent.nousresearch.com/docs/user-guide/security), [OpenCode Rules](https://opencode.ai/docs/rules/), [OpenCode Providers](https://opencode.ai/docs/providers/), [OpenRouter Free](https://openrouter.ai/docs/cookbook/get-started/free-models-router-playground) e [OpenCode Go](https://opencode.ai/docs/go/).

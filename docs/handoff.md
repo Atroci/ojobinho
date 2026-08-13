@@ -2,8 +2,8 @@
 
 ## Estado
 
-v0.1: CLI local, exemplos de dados, rubrica brasileira, adaptadores de busca e handoff, compatibilidade Codex/Claude/Hermes/OpenCode, testes, CI no Node.js 20, documentação comunitária e licença Apache-2.0.
+Branch de v0.2 pronta: CLI local, snapshots e bundles auditáveis, cadência/histórico, preparo de entrevista, Greenhouse/Lever públicos, golden evals brasileiros, contrato contra prompt injection, guard de dados pessoais, CI e CodeQL SHA-pinned. Tudo permanece sem dependências e com envio humano.
 
 ## Próximo passo
 
-Revisar e mesclar o draft PR. Depois, testar com candidatos usando cópias locais e abrir issues para portais, contratos ou riscos brasileiros ausentes. Integração automática com planilha fica fora até existir necessidade comprovada e contrato de dados estável.
+Revisar CI hospedado e mesclar o draft PR. Depois, testar com candidatos usando cópias locais e abrir issues para diferenças reais. Integração automática com planilha, dashboard, autofill e envio automático continuam fora até necessidade comprovada; envio automático permanece proibido.

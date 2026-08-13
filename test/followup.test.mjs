@@ -14,6 +14,9 @@ test("cadência usa dias úteis, limita follow-ups e para em status terminal", (
   assert.equal(calcularProximoFollowUp({ status: "entrevista", dataReferencia: "2026-08-13", followUps: 1 }), "2026-08-20");
   assert.equal(calcularProximoFollowUp({ status: "candidatura-enviada", dataReferencia: "2026-08-13", followUps: 2 }), null);
   assert.equal(calcularProximoFollowUp({ status: "reprovado", dataReferencia: "2026-08-13" }), null);
+  assert.throws(() => calcularProximoFollowUp({ status: "enviado-automaticamente", dataReferencia: "2026-08-13" }), /Status/);
+  assert.throws(() => calcularProximoFollowUp({ status: "triagem", dataReferencia: "ontem" }), /data ISO/);
+  assert.throws(() => calcularProximoFollowUp({ status: "triagem", dataReferencia: "2026-02-30" }), /data ISO/);
 });
 
 test("histórico local valida entrada e grava JSONL sem executar ação externa", async () => {
@@ -24,4 +27,5 @@ test("histórico local valida entrada e grava JSONL sem executar ação externa"
   assert.deepEqual(linha, { data: "2026-08-13T12:00:00.000Z", status: "entrevista", observacao: "Conversa marcada" });
   await assert.rejects(() => registrarEvento("../segredo", { data: "2026-08-13", status: "triagem" }, base), /ID/);
   await assert.rejects(() => registrarEvento("acme", { data: "2026-08-13", status: "enviado-automaticamente" }, base), /Status/);
+  await assert.rejects(() => registrarEvento("acme", { data: null, status: "triagem" }, base), /data ISO/);
 });

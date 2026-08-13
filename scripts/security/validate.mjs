@@ -39,7 +39,7 @@ const PRIVATE_FILES = new Set([
   "data/pipeline.md",
   "tracker.csv",
 ]);
-const PRIVATE_DIRECTORIES = new Set([
+const PRIVATE_ROOT_DIRECTORIES = new Set([
   "application",
   "applications",
   "candidatura",
@@ -48,16 +48,6 @@ const PRIVATE_DIRECTORIES = new Set([
   "entrevistas",
   "interview",
   "interviews",
-  "vaga-snapshot",
-  "vaga-snapshots",
-  "vaga_snapshot",
-  "vaga_snapshots",
-  "vagas",
-  "vacancies",
-  "vacancy-snapshot",
-  "vacancy-snapshots",
-  "vacancy_snapshot",
-  "vacancy_snapshots",
 ]);
 const PRIVATE_FILE = /^(?:(?:vaga|vacancy)[-_]?snapshot|(?:application|candidatura)[-_](?:draft|form|formulario|private|payload)|(?:interview|entrevista)[-_](?:answers|notes|notas|private|respostas))(?:[-_.].*)?$/i;
 
@@ -70,8 +60,7 @@ function permitido(caminho) {
     DOCUMENTED_EXAMPLES.has(caminho) ||
     caminho === "reports/.gitkeep" ||
     caminho === "output/.gitkeep" ||
-    caminho.startsWith("examples/") ||
-    caminho.startsWith("test/fixtures/")
+    caminho.startsWith("test/fixtures/untrusted/")
   );
 }
 
@@ -79,9 +68,9 @@ export function arquivosPessoaisRastreados(caminhos) {
   return caminhos.map(normalizar).filter((caminho) => {
     if (permitido(caminho)) return false;
     if (PRIVATE_FILES.has(caminho)) return true;
-    if (caminho.startsWith("reports/") || caminho.startsWith("output/")) return true;
+    if (caminho.startsWith("data/") || caminho.startsWith("reports/") || caminho.startsWith("output/")) return true;
     const partes = caminho.split("/");
-    return partes.some((parte) => PRIVATE_DIRECTORIES.has(parte.toLowerCase())) || PRIVATE_FILE.test(partes.at(-1));
+    return PRIVATE_ROOT_DIRECTORIES.has(partes[0].toLowerCase()) || (partes.length === 1 && PRIVATE_FILE.test(partes[0]));
   });
 }
 

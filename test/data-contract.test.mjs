@@ -77,9 +77,8 @@ test("gitignore cobre todos os caminhos privados do contrato", async () => {
     "config/perfil.md",
     "curriculo.md",
     "tracker.csv",
-    "data/pipeline.md",
-    "data/vacancies/",
-    "data/applications/",
+    "data/*",
+    "!data/pipeline.example.md",
     "reports/*",
     "output/*",
   ]) assert.ok(gitignore.split("\n").includes(path), `Falta no .gitignore: ${path}`);

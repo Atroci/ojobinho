@@ -49,7 +49,10 @@ test("guard rejeita dados locais e permite somente artefatos sintéticos", () =>
     "applications/empresa/formulario.md",
     "entrevistas/empresa/notas.md",
     "data/vacancy-snapshot-empresa.json",
+    "data/history/acme.jsonl",
+    "data/interview/story-bank.md",
     "interview-notes-empresa.md",
+    "lib/vacancy-snapshot.mjs",
     "config/perfil.example.md",
     "curriculo.example.md",
     "data/pipeline.example.md",
@@ -58,5 +61,5 @@ test("guard rejeita dados locais e permite somente artefatos sintéticos", () =>
     "test/fixtures/untrusted/email.json",
   ];
 
-  assert.deepEqual(arquivosPessoaisRastreados(rastreados), rastreados.slice(0, 11));
+  assert.deepEqual(arquivosPessoaisRastreados(rastreados), rastreados.slice(0, 13));
 });

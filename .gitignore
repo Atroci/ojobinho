@@ -6,9 +6,8 @@ node_modules/
 config/perfil.md
 curriculo.md
 tracker.csv
-data/pipeline.md
-data/vacancies/
-data/applications/
+data/*
+!data/pipeline.example.md
 reports/*
 !reports/.gitkeep
 output/*
