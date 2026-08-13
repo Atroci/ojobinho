@@ -2,7 +2,7 @@
 
 ## Estado
 
-v0.1: CLI local, exemplos de dados, rubrica brasileira, fluxo de candidatura, testes, CI no Node.js 20, documentação comunitária e licença Apache-2.0.
+v0.1: CLI local, exemplos de dados, rubrica brasileira, adaptadores de busca e handoff, compatibilidade Codex/Claude/Hermes/OpenCode, testes, CI no Node.js 20, documentação comunitária e licença Apache-2.0.
 
 ## Próximo passo
 

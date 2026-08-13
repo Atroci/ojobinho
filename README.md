@@ -40,6 +40,8 @@ Avalie esta vaga com oJobinho: https://empresa.com/vaga/123
 | Quero... | Faça... |
 |---|---|
 | Encontrar vagas para testar | `npm run vagas` |
+| Buscar em portais | `npm run buscar -- "designer remoto Brasil"` |
+| Reconhecer fluxo do portal | `npm run portal -- "URL"` |
 | Colocar uma vaga na fila | `npm run vaga -- "URL"` |
 | Conferir configuração | `npm run doctor` |
 | Rodar testes | `npm test` |
@@ -104,10 +106,23 @@ tracker local
 | Segurança | Domínio, empresa, contato, pagamento antecipado e coleta precoce de documentos são verificados |
 | Privacidade | Perfil, currículo e tracker ficam na sua máquina |
 
+## Portais e agentes
+
+Adaptadores pequenos cobrem LinkedIn, Catho, InfoJobs, Gupy, Vagas.com.br, Trampos, Programathor, Revelo, Workana, 99Freelas, Indeed, Remote Rocketship, Himalayas, Instagram e Facebook. Qualquer outro endereço HTTP ou HTTPS recebe handoff genérico seguro.
+
+| Função | O que acontece |
+|---|---|
+| Buscar | Gera consultas públicas por domínio; não raspa páginas |
+| Preparar | Identifica portal e entrega checklist de handoff |
+| Enviar | Sempre feito pelo candidato no canal oficial |
+
+O mesmo `AGENTS.md` funciona com Codex, Hermes e OpenCode. `CLAUDE.md` conecta Claude Code ao mesmo contrato. OpenRouter gratuito e OpenCode Go entram pelo provedor do agente, sem chave salva no repositório. Veja [adaptadores e agentes compatíveis](docs/adaptadores-e-agentes.md).
+
 ## Estrutura
 
 ```text
 AGENTS.md                 regras para o agente
+adapters/portais.mjs      busca e handoff por portal
 config/perfil.md          suas preferências, ignoradas pelo Git
 curriculo.md              currículo mestre, ignorado pelo Git
 data/pipeline.md          fila local de vagas
@@ -121,6 +136,7 @@ output/                   materiais adaptados
 ## Documentação
 
 - [Guia de uso](docs/guia-de-uso.md): instalação, avaliação e acompanhamento.
+- [Adaptadores e agentes](docs/adaptadores-e-agentes.md): portais, Codex, Claude, Hermes, OpenRouter e OpenCode.
 - [Privacidade e uso responsável](docs/privacidade-e-uso-responsavel.md): dados locais, revisão humana e limites.
 - [Como contribuir](CONTRIBUTING.md) e [Código de Conduta](CODE_OF_CONDUCT.md).
 

@@ -4,6 +4,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import test from "node:test";
 
+import { criarBuscas, identificarPortal } from "../adapters/portais.mjs";
 import { diagnosticar, iniciar, registrarVaga } from "../ojobinho.mjs";
 
 async function projetoTemporario() {
@@ -38,4 +39,21 @@ test("registrarVaga aceita web, rejeita outros protocolos e deixa prova no pipel
   assert.match(pipeline, /2026-08-13 \| https:\/\/empresa\.com\/vagas\/123/);
   await assert.rejects(() => registrarVaga("file:///etc/passwd", base), /http ou https/);
   await assert.rejects(() => registrarVaga("não é link", base), /URL válida/);
+});
+
+test("adaptadores reconhecem portais, buscam sem scraping e mantêm envio humano", () => {
+  const linkedin = identificarPortal("https://br.linkedin.com/jobs/view/123");
+  assert.equal(linkedin.id, "linkedin");
+  assert.match(linkedin.orientacao, /envie manualmente/);
+
+  const generico = identificarPortal("https://carreiras.empresa.com/vaga/123");
+  assert.equal(generico.id, "generico");
+  assert.equal(generico.conhecido, false);
+  assert.equal(identificarPortal("https://linkedin.com.exemplo.net/vaga").id, "generico");
+  assert.throws(() => identificarPortal("file:///etc/passwd"), /http ou https/);
+
+  const buscas = criarBuscas("designer remoto Brasil");
+  assert.ok(buscas.length >= 10);
+  assert.equal(new URL(buscas[0].url).searchParams.get("q"), "site:linkedin.com designer remoto Brasil");
+  assert.throws(() => criarBuscas(" "), /Informe cargo/);
 });

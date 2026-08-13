@@ -19,6 +19,13 @@ Abra a [lista pública de oportunidades](https://docs.google.com/spreadsheets/d/
 npm run vaga -- "https://empresa.com/vaga/123"
 ```
 
+Para pesquisar vários portais sem scraping e reconhecer o fluxo de um anúncio:
+
+```bash
+npm run buscar -- "designer remoto Brasil"
+npm run portal -- "https://empresa.com/vaga/123"
+```
+
 ## 3. Avalie e prepare
 
 Peça ao agente compatível com `AGENTS.md` para avaliar a vaga. Revise nota, sinais de legitimidade, currículo e mensagem gerados. Nunca aceite experiência inventada.
@@ -26,3 +33,5 @@ Peça ao agente compatível com `AGENTS.md` para avaliar a vaga. Revise nota, si
 ## 4. Envie e acompanhe
 
 Você realiza o envio no canal oficial da empresa. Depois, atualize `tracker.csv` com status e próxima ação.
+
+Veja [adaptadores e agentes compatíveis](adaptadores-e-agentes.md) para Codex, Claude Code, Hermes, OpenCode, OpenRouter e OpenCode Go.

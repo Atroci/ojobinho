@@ -12,6 +12,8 @@
     "doctor": "node ojobinho.mjs doctor",
     "vagas": "node ojobinho.mjs vagas",
     "vaga": "node ojobinho.mjs vaga",
+    "buscar": "node ojobinho.mjs buscar",
+    "portal": "node ojobinho.mjs portal",
     "test": "node --test"
   },
   "license": "Apache-2.0"
