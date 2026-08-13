@@ -40,7 +40,15 @@ Avalie esta vaga com oJobinho: https://empresa.com/vaga/123
 | Quero... | Faça... |
 |---|---|
 | Encontrar vagas para testar | `npm run vagas` |
+| Buscar em portais | `npm run buscar -- "designer remoto Brasil"` |
+| Reconhecer fluxo do portal | `npm run portal -- "URL"` |
 | Colocar uma vaga na fila | `npm run vaga -- "URL"` |
+| Capturar descrição auditável | `npm run capturar -- data/input/vaga.json` |
+| Criar pacote de candidatura | `npm run pacote -- data/input/pacote.json` |
+| Calcular próximo contato | `npm run proximo -- candidatura-enviada 2026-08-14 0` |
+| Consultar Greenhouse público | `npm run greenhouse -- empresa` |
+| Consultar Lever público | `npm run lever -- empresa` |
+| Validar segurança | `npm run security` |
 | Conferir configuração | `npm run doctor` |
 | Rodar testes | `npm test` |
 
@@ -60,6 +68,8 @@ A planilha tem acesso de visualização. Você pode abrir a vaga original, copia
 - Separa requisitos, salário, contrato, localização, interesse e legitimidade.
 - Entende CLT, PJ, estágio, temporário e freelancer.
 - Adapta currículo e mensagem sem inventar experiência.
+- Guarda snapshots com URL, data e hash; organiza materiais em bundles versionados.
+- Calcula lembretes em dias úteis e registra histórico local sem enviar mensagens.
 - Mantém pipeline e tracker locais, em arquivos legíveis.
 - Funciona dentro do agente de IA que você já usa.
 
@@ -81,6 +91,8 @@ Você escolhe a vaga, revisa os materiais e realiza a ação final.
 
 ```text
 vaga ou linha da planilha
+        ↓
+snapshot local com hash
         ↓
 avaliação A-G + sinais de golpe
         ↓
@@ -104,15 +116,33 @@ tracker local
 | Segurança | Domínio, empresa, contato, pagamento antecipado e coleta precoce de documentos são verificados |
 | Privacidade | Perfil, currículo e tracker ficam na sua máquina |
 
+## Portais e agentes
+
+Adaptadores de handoff cobrem LinkedIn, Catho, InfoJobs, Gupy, Vagas.com.br, Trampos, Programathor, Revelo, Workana, 99Freelas, Indeed, Remote Rocketship, Himalayas, Instagram e Facebook. Qualquer outro endereço HTTP ou HTTPS recebe handoff genérico seguro. Greenhouse e Lever têm leitura opcional de APIs públicas estruturadas, com hosts fixos, limite de resposta, timeout e testes sem rede.
+
+| Função | O que acontece |
+|---|---|
+| Buscar | Gera consultas públicas por domínio; não raspa páginas |
+| Importar | Lê somente endpoints públicos Greenhouse/Lever; nunca páginas protegidas |
+| Preparar | Identifica portal e entrega checklist de handoff |
+| Enviar | Sempre feito pelo candidato no canal oficial |
+
+O mesmo `AGENTS.md` funciona com Codex, Hermes e OpenCode. `CLAUDE.md` conecta Claude Code ao mesmo contrato. OpenRouter gratuito e OpenCode Go entram pelo provedor do agente, sem chave salva no repositório. Veja [adaptadores e agentes compatíveis](docs/adaptadores-e-agentes.md).
+
 ## Estrutura
 
 ```text
 AGENTS.md                 regras para o agente
+adapters/portais.mjs      busca e handoff por portal
+providers/                Greenhouse/Lever públicos e transporte seguro
+lib/                      snapshots, bundles e acompanhamento local
+evals/                    casos brasileiros sintéticos e replay offline
 config/perfil.md          suas preferências, ignoradas pelo Git
 curriculo.md              currículo mestre, ignorado pelo Git
-data/pipeline.md          fila local de vagas
+data/                     fila, snapshots, histórico e entrevista privados
 modes/avaliar.md          rubrica brasileira
 modes/aplicar.md          preparação com revisão humana
+modes/entrevista.md       preparo de entrevista sem inventar fatos
 tracker.csv               estado das candidaturas
 reports/                  avaliações geradas
 output/                   materiais adaptados
@@ -121,7 +151,10 @@ output/                   materiais adaptados
 ## Documentação
 
 - [Guia de uso](docs/guia-de-uso.md): instalação, avaliação e acompanhamento.
+- [Adaptadores e agentes](docs/adaptadores-e-agentes.md): portais, Codex, Claude, Hermes, OpenRouter e OpenCode.
 - [Privacidade e uso responsável](docs/privacidade-e-uso-responsavel.md): dados locais, revisão humana e limites.
+- [Contrato de dados](DATA_CONTRACT.md): o que pode ser versionado e o que permanece privado.
+- [Segurança](SECURITY.md): prompt injection, dados pessoais e relato privado de vulnerabilidades.
 - [Como contribuir](CONTRIBUTING.md) e [Código de Conduta](CODE_OF_CONDUCT.md).
 
 ## Patrocinadores

@@ -1,0 +1,40 @@
+{
+  "synthetic": true,
+  "cases": [
+    {
+      "id": "clt-salario-aberto",
+      "candidate": "Cumpre requisitos, tem experiência similar, aceita CLT e reside no Brasil.",
+      "job": "Analista de suporte, CLT, remoto no Brasil, salário bruto mensal de R$ 5.200, sem variável."
+    },
+    {
+      "id": "pj-mei-ambiguo",
+      "candidate": "Cumpre parte dos requisitos e aceita avaliar contrato PJ, sem confirmar CNPJ ou MEI.",
+      "job": "Pessoa desenvolvedora, PJ, R$ 8.000 mensais; exige nota fiscal, mas não esclarece se MEI é aceito ou obrigatório."
+    },
+    {
+      "id": "salario-oculto",
+      "candidate": "Cumpre requisitos e aceita CLT, mas precisa conhecer a remuneração antes de avançar.",
+      "job": "Analista de operações, CLT, híbrido em Recife; salário a combinar."
+    },
+    {
+      "id": "remoto-territorio-restrito",
+      "candidate": "Reside em Pernambuco e não pretende mudar de estado.",
+      "job": "Atendimento remoto, CLT, salário bruto mensal de R$ 4.000; aceita somente residentes no estado de São Paulo."
+    },
+    {
+      "id": "autorizacao-trabalho-ausente",
+      "candidate": "Reside no Brasil e não possui autorização de trabalho em Portugal.",
+      "job": "Suporte em português, contrato local em Portugal, remoto; exige autorização de trabalho portuguesa já válida."
+    },
+    {
+      "id": "registro-profissional-ausente",
+      "candidate": "Tem formação compatível, mas não possui registro profissional ativo.",
+      "job": "Fisioterapeuta CLT em São Paulo, salário bruto mensal de R$ 4.800; exige CREFITO ativo."
+    },
+    {
+      "id": "sinais-fraude-recrutamento",
+      "candidate": "Cumpre os requisitos técnicos e não forneceu documentos ou pagamento.",
+      "job": "Vaga remota CLT sem salário divulgado; contato exige curso pago, taxa antecipada, dados bancários antes da entrevista e conversa apenas em conta pessoal."
+    }
+  ]
+}

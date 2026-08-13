@@ -6,7 +6,7 @@
 
 A planilha é pública e somente leitura. Abra uma vaga, copie o link da origem e execute `npm run vaga -- "URL"`. Faça uma cópia da planilha se quiser filtros ou anotações próprias.
 
-## Portais
+## Portais com adaptador
 
 - LinkedIn Jobs
 - Gupy
@@ -18,5 +18,12 @@ A planilha é pública e somente leitura. Abra uma vaga, copie o link da origem 
 - Revelo
 - Workana
 - 99Freelas
+- Indeed
+- Remote Rocketship
+- Himalayas
+- Instagram
+- Facebook
 
-Respeite termos, login, robots.txt e limites de cada portal. oJobinho não contorna bloqueios nem envia candidaturas automaticamente.
+Use `npm run buscar -- "cargo remoto Brasil"` para gerar buscas públicas sem scraping. Use `npm run portal -- "URL"` para reconhecer o portal e receber instruções de handoff. URLs web desconhecidas usam adaptador genérico.
+
+Respeite termos, login, robots.txt e limites de cada portal. Adaptadores não contornam bloqueios nem enviam candidaturas automaticamente.

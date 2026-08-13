@@ -1,6 +1,6 @@
 {
   "name": "ojobinho",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Seu copiloto local para buscar vagas e organizar candidaturas no Brasil.",
   "private": true,
   "type": "module",
@@ -12,6 +12,16 @@
     "doctor": "node ojobinho.mjs doctor",
     "vagas": "node ojobinho.mjs vagas",
     "vaga": "node ojobinho.mjs vaga",
+    "buscar": "node ojobinho.mjs buscar",
+    "portal": "node ojobinho.mjs portal",
+    "capturar": "node ojobinho.mjs capturar",
+    "pacote": "node ojobinho.mjs pacote",
+    "proximo": "node ojobinho.mjs proximo",
+    "historico": "node ojobinho.mjs historico",
+    "greenhouse": "node ojobinho.mjs greenhouse",
+    "lever": "node ojobinho.mjs lever",
+    "evals": "node evals/replay.mjs evals/expected.json",
+    "security": "node scripts/security/validate.mjs",
     "test": "node --test"
   },
   "license": "Apache-2.0"
