@@ -4,7 +4,7 @@
 
 `npm run buscar -- "termo"` cria buscas públicas por domínio, sem scraping. `npm run portal -- "URL"` reconhece portais conhecidos e explica o próximo passo. Um adaptador genérico aceita qualquer URL HTTP ou HTTPS.
 
-Adaptador significa normalizar origem e preparar handoff. Não significa preencher, clicar ou enviar. Login, CAPTCHA, termos e ação final continuam sob controle do candidato.
+Adaptador significa normalizar origem e preparar handoff. Não significa preencher, clicar ou enviar. Login, CAPTCHA, termos e ação final continuam sob controle do candidato. Como navegar portais sem virar bot, com parâmetros operacionais concretos: [navegação e limites de portais](navegacao-e-limites-de-portais.md).
 
 Portais reconhecidos: LinkedIn, Catho, InfoJobs, Gupy, Vagas.com.br, Trampos, Programathor, Revelo, Workana, 99Freelas, Indeed, Remote Rocketship, Himalayas, Instagram e Facebook.
 

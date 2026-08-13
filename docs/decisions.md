@@ -21,3 +21,17 @@
 - Conteúdo externo é dado não confiável e nunca instrui agente ou ferramenta.
 - Golden evals são sintéticos e offline; validam contrato e regressão, não qualidade geral de um modelo.
 - Follow-up calcula datas e registra fatos localmente; não envia mensagens.
+
+## [2026-08-13] Navegação de portais e limites operacionais
+
+- Doutrina de navegação: navegador real do candidato, perfil persistente próprio, pessoa acompanhando e podendo assumir; headless, WebDriver, CDP para autenticação de plataforma e spoofing de fingerprint ficam fora.
+- Falha em sessão de portal para o fluxo e exige ação humana; nunca reinicia sozinha nem degrada silenciosamente.
+- Aviso de falha precisa chegar a uma pessoa; linha em log não conta como aviso.
+- Leitura em série respeita teto diário, teto por item e intervalo variável; cadência fixa é assinatura de máquina.
+- Campo com máscara é conferido pela tela antes do envio, não pelo valor digitado.
+- Fase de observação só tem portão de saída se o instrumento que mede o critério for construído primeiro.
+- Chamada a modelo usa prazo em tempo absoluto; timeout por leitura não protege contra keep-alive.
+- Etapa lenta vai para fila com tentativas limitadas, fora do caminho da requisição.
+- oJobinho não adota framework de automação de navegador: o projeto não preenche nem envia, então não há navegador a dirigir.
+- Camoufox fica registrado como proposta com plano de avaliação, sem uso nem medição; mudar a base do navegador altera detecção, não altera termos de uso.
+- Detalhes, números e origem de cada item em `docs/navegacao-e-limites-de-portais.md`.
