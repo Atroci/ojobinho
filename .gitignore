@@ -7,6 +7,8 @@ config/perfil.md
 curriculo.md
 tracker.csv
 data/pipeline.md
+data/vacancies/
+data/applications/
 reports/*
 !reports/.gitkeep
 output/*
