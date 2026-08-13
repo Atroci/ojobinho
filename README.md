@@ -153,6 +153,7 @@ output/                   materiais adaptados
 - [Guia de uso](docs/guia-de-uso.md): instalação, avaliação e acompanhamento.
 - [Adaptadores e agentes](docs/adaptadores-e-agentes.md): portais, Codex, Claude, Hermes, OpenRouter e OpenCode.
 - [Privacidade e uso responsável](docs/privacidade-e-uso-responsavel.md): dados locais, revisão humana e limites.
+- [Navegação e limites de portais](docs/navegacao-e-limites-de-portais.md): como ler portais sem virar bot, tetos e ritmo, propostas ainda não validadas.
 - [Contrato de dados](DATA_CONTRACT.md): o que pode ser versionado e o que permanece privado.
 - [Segurança](SECURITY.md): prompt injection, dados pessoais e relato privado de vulnerabilidades.
 - [Como contribuir](CONTRIBUTING.md) e [Código de Conduta](CODE_OF_CONDUCT.md).

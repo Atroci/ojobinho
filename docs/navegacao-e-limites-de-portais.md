@@ -14,11 +14,11 @@ Isso inverte a pergunta usual. Em vez de "como fazer o script parecer humano", a
 
 # Validado na prática
 
-Cada item abaixo descreve configuração ou incidente real de uma operação de automação assistida em marketplace de freelancer, adaptado para o contexto do oJobinho.
+Cada item abaixo descreve configuração ou incidente real de operações de automação assistida, adaptado para o contexto do oJobinho. São duas operações distintas, e a diferença importa: uma é um navegador de operador onde a automação é declaradamente manual (item 1), a outra é um lote automatizado em marketplace de freelancer (itens 2 a 5). O que o segundo ensina sobre ritmo e parada não autoriza o primeiro a enviar nada.
 
 ## 1. Navegador real, perfil real, humano no circuito
 
-A configuração em uso hoje, para sessões de operador em plataforma logada:
+Configuração em uso para sessões de operador em plataforma logada, num sistema em que a automação de navegador é declaradamente manual:
 
 - Chrome estável instalado no sistema, **não** headless.
 - Perfil persistente próprio, em diretório com permissão `0700`. Mesmo perfil sempre, com histórico e cookies acumulando como os de qualquer pessoa.
@@ -83,7 +83,7 @@ A operação rodou primeiro em modo sombra, com o envio desligado por padrão ex
 
 O que não funcionou vale mais como aviso. A especificação do piloto definia critérios de saída concretos: 100 decisões com rótulo humano de auditoria, pelo menos 10 com dois rótulos independentes, resultado comercial explícito para cada oportunidade enviada (inclusive `unknown` quando não há evidência), validação apontando zero campo proibido, e aprovação final do operador.
 
-O registro que mediria tudo isso nunca foi construído — o diretório previsto na especificação não existe. O modo ao vivo foi ligado por decisão explícita do operador, não por atingir aqueles critérios.
+O modo ao vivo foi ligado por decisão explícita do operador, não por atingir aqueles critérios. O registro que os mediria não estava construído.
 
 A lição: um piloto que não constrói o próprio instrumento de medição não tem portão de saída. Tem uma data. Se a fase de observação define critério, o primeiro trabalho da fase é o instrumento que mede o critério — não o último.
 
