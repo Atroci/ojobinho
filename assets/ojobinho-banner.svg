@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">oJobinho</title>
+  <desc id="desc">Seu copiloto de candidaturas no Brasil</desc>
+  <rect width="1200" height="360" rx="32" fill="#071d14"/>
+  <circle cx="104" cy="86" r="46" fill="#ffcc29"/>
+  <path d="M82 86h44M104 64v44" stroke="#071d14" stroke-width="12" stroke-linecap="round"/>
+  <path d="M960 0h240v240L960 0Z" fill="#147a3d"/>
+  <path d="M1000 0h200v200L1000 0Z" fill="#002776" opacity=".9"/>
+  <text x="76" y="210" fill="#f5fff8" font-family="Arial, Helvetica, sans-serif" font-size="112" font-weight="800">oJobinho</text>
+  <text x="82" y="278" fill="#a8dcb8" font-family="Arial, Helvetica, sans-serif" font-size="34">Seu copiloto de candidaturas no Brasil</text>
+  <rect x="82" y="302" width="380" height="8" rx="4" fill="#ffcc29"/>
+</svg>
