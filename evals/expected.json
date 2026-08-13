@@ -1,0 +1,124 @@
+{
+  "contractVersion": 1,
+  "results": [
+    {
+      "contractVersion": 1,
+      "caseId": "clt-salario-aberto",
+      "facts": {
+        "contract": "CLT",
+        "salary": { "visibility": "DISCLOSED", "amount": 5200, "currency": "BRL", "period": "MONTHLY", "basis": "GROSS", "variable": false },
+        "territory": "ELIGIBLE",
+        "mei": "NOT_APPLICABLE",
+        "authorization": "NOT_APPLICABLE",
+        "regulation": "NOT_APPLICABLE",
+        "scamSignals": []
+      },
+      "rubric": { "A": 5, "B": 4.5, "C": 5, "D": 5, "E": 4.5, "F": 4.5, "G": "CLEAR" },
+      "score": 4.8,
+      "blockers": [],
+      "decision": "APPLY"
+    },
+    {
+      "contractVersion": 1,
+      "caseId": "pj-mei-ambiguo",
+      "facts": {
+        "contract": "PJ",
+        "salary": { "visibility": "DISCLOSED", "amount": 8000, "currency": "BRL", "period": "MONTHLY", "basis": "UNSPECIFIED", "variable": null },
+        "territory": "ELIGIBLE",
+        "mei": "AMBIGUOUS",
+        "authorization": "NOT_APPLICABLE",
+        "regulation": "NOT_APPLICABLE",
+        "scamSignals": []
+      },
+      "rubric": { "A": 4, "B": 4, "C": 2, "D": 5, "E": 4, "F": 4, "G": "CLEAR" },
+      "score": 3.9,
+      "blockers": [],
+      "decision": "ASK"
+    },
+    {
+      "contractVersion": 1,
+      "caseId": "salario-oculto",
+      "facts": {
+        "contract": "CLT",
+        "salary": { "visibility": "HIDDEN", "amount": null, "currency": null, "period": "UNSPECIFIED", "basis": "UNSPECIFIED", "variable": null },
+        "territory": "ELIGIBLE",
+        "mei": "NOT_APPLICABLE",
+        "authorization": "NOT_APPLICABLE",
+        "regulation": "NOT_APPLICABLE",
+        "scamSignals": []
+      },
+      "rubric": { "A": 4.5, "B": 4, "C": 1.5, "D": 5, "E": 4, "F": 4, "G": "CLEAR" },
+      "score": 3.9,
+      "blockers": [],
+      "decision": "ASK"
+    },
+    {
+      "contractVersion": 1,
+      "caseId": "remoto-territorio-restrito",
+      "facts": {
+        "contract": "CLT",
+        "salary": { "visibility": "DISCLOSED", "amount": 4000, "currency": "BRL", "period": "MONTHLY", "basis": "GROSS", "variable": null },
+        "territory": "RESTRICTED",
+        "mei": "NOT_APPLICABLE",
+        "authorization": "NOT_APPLICABLE",
+        "regulation": "NOT_APPLICABLE",
+        "scamSignals": []
+      },
+      "rubric": { "A": 5, "B": 5, "C": 5, "D": 1, "E": 5, "F": 5, "G": "CLEAR" },
+      "score": 4.4,
+      "blockers": ["TERRITORY"],
+      "decision": "BLOCKED"
+    },
+    {
+      "contractVersion": 1,
+      "caseId": "autorizacao-trabalho-ausente",
+      "facts": {
+        "contract": "UNKNOWN",
+        "salary": { "visibility": "UNSPECIFIED", "amount": null, "currency": null, "period": "UNSPECIFIED", "basis": "UNSPECIFIED", "variable": null },
+        "territory": "ELIGIBLE",
+        "mei": "NOT_APPLICABLE",
+        "authorization": "MISSING",
+        "regulation": "NOT_APPLICABLE",
+        "scamSignals": []
+      },
+      "rubric": { "A": 4, "B": 4, "C": 2, "D": 1, "E": 4, "F": 4, "G": "CLEAR" },
+      "score": 3.3,
+      "blockers": ["AUTHORIZATION"],
+      "decision": "BLOCKED"
+    },
+    {
+      "contractVersion": 1,
+      "caseId": "registro-profissional-ausente",
+      "facts": {
+        "contract": "CLT",
+        "salary": { "visibility": "DISCLOSED", "amount": 4800, "currency": "BRL", "period": "MONTHLY", "basis": "GROSS", "variable": null },
+        "territory": "ELIGIBLE",
+        "mei": "NOT_APPLICABLE",
+        "authorization": "NOT_APPLICABLE",
+        "regulation": "MISSING",
+        "scamSignals": []
+      },
+      "rubric": { "A": 1, "B": 4, "C": 5, "D": 5, "E": 4, "F": 4, "G": "CLEAR" },
+      "score": 3.4,
+      "blockers": ["REGULATION"],
+      "decision": "BLOCKED"
+    },
+    {
+      "contractVersion": 1,
+      "caseId": "sinais-fraude-recrutamento",
+      "facts": {
+        "contract": "CLT",
+        "salary": { "visibility": "HIDDEN", "amount": null, "currency": null, "period": "UNSPECIFIED", "basis": "UNSPECIFIED", "variable": null },
+        "territory": "ELIGIBLE",
+        "mei": "NOT_APPLICABLE",
+        "authorization": "NOT_APPLICABLE",
+        "regulation": "NOT_APPLICABLE",
+        "scamSignals": ["EARLY_SENSITIVE_DATA", "MANDATORY_PURCHASE", "UNOFFICIAL_CONTACT", "UPFRONT_PAYMENT"]
+      },
+      "rubric": { "A": 5, "B": 4, "C": 1.5, "D": 5, "E": 4, "F": 4, "G": "BLOCKED" },
+      "score": 4.1,
+      "blockers": ["LEGITIMACY"],
+      "decision": "BLOCKED"
+    }
+  ]
+}
