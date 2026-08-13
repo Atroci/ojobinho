@@ -14,6 +14,13 @@
   Avalie oportunidades, adapte seu currículo e acompanhe candidaturas sem entregar seus dados a outro serviço.
 </p>
 
+<p align="center">
+  <a href="#comece-em-dois-minutos">Começar</a> ·
+  <a href="#lista-pública-de-oportunidades">Vagas para testar</a> ·
+  <a href="#feito-para-o-mercado-brasileiro">Mercado brasileiro</a> ·
+  <a href="#patrocinadores">Patrocinadores</a>
+</p>
+
 ## Comece em dois minutos
 
 ```bash
@@ -34,6 +41,10 @@ Avalie esta vaga com oJobinho: https://empresa.com/vaga/123
 | Colocar uma vaga na fila | `npm run vaga -- "URL"` |
 | Conferir configuração | `npm run doctor` |
 | Rodar testes | `npm test` |
+
+![Da busca confusa a uma candidatura revisada e focada](assets/readme/da-vaga-a-candidatura.png)
+
+<p align="center"><em>Menos volume. Mais foco em vagas que fazem sentido para você.</em></p>
 
 ## Lista pública de oportunidades
 
@@ -59,6 +70,10 @@ A planilha tem acesso de visualização. Você pode abrir a vaga original, copia
 - Não transforma falta de experiência em palavra-chave falsa.
 
 Você escolhe a vaga, revisa os materiais e realiza a ação final.
+
+![Dados locais e decisões humanas durante todo o fluxo](assets/readme/local-e-humano.png)
+
+<p align="center"><em>Seus dados ficam locais. Toda candidatura passa por você.</em></p>
 
 ## Fluxo
 
