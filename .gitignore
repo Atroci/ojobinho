@@ -4,6 +4,7 @@ node_modules/
 
 # Dados pessoais do candidato
 config/perfil.md
+config/fontes.json
 curriculo.md
 tracker.csv
 data/*

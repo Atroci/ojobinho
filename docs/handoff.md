@@ -2,8 +2,8 @@
 
 ## Estado
 
-Branch de v0.2 pronta: CLI local, snapshots e bundles auditáveis, cadência/histórico, preparo de entrevista, Greenhouse/Lever públicos, golden evals brasileiros, contrato contra prompt injection, guard de dados pessoais, CI e CodeQL SHA-pinned. Tudo permanece sem dependências e com envio humano.
+Branch de v0.3 pronta: fluxo v0.2 mais descoberta local idempotente em Gupy, Greenhouse e Lever, configuração inicial de empresas brasileiras e runbook de 6 horas. Tudo permanece sem dependências, sem credenciais no repositório e com envio humano.
 
 ## Próximo passo
 
-Revisar CI hospedado e mesclar o draft PR. Depois, testar com candidatos usando cópias locais e abrir issues para diferenças reais. Integração automática com planilha, dashboard, autofill e envio automático continuam fora até necessidade comprovada; envio automático permanece proibido.
+Revisar CI hospedado e mesclar o PR. Depois, medir falsos positivos e fontes falhas antes de adicionar Catho/InfoJobs/Trampos ao coletor. Sincronização autenticada com planilha, dashboard, autofill e envio automático continuam fora; envio automático permanece proibido.

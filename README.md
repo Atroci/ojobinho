@@ -41,6 +41,7 @@ Avalie esta vaga com oJobinho: https://empresa.com/vaga/123
 |---|---|
 | Encontrar vagas para testar | `npm run vagas` |
 | Buscar em portais | `npm run buscar -- "designer remoto Brasil"` |
+| Atualizar fontes públicas configuradas | `npm run descobrir` |
 | Reconhecer fluxo do portal | `npm run portal -- "URL"` |
 | Colocar uma vaga na fila | `npm run vaga -- "URL"` |
 | Capturar descrição auditável | `npm run capturar -- data/input/vaga.json` |
@@ -118,12 +119,13 @@ tracker local
 
 ## Portais e agentes
 
-Adaptadores de handoff cobrem LinkedIn, Catho, InfoJobs, Gupy, Vagas.com.br, Trampos, Programathor, Revelo, Workana, 99Freelas, Indeed, Remote Rocketship, Himalayas, Instagram e Facebook. Qualquer outro endereço HTTP ou HTTPS recebe handoff genérico seguro. Greenhouse e Lever têm leitura opcional de APIs públicas estruturadas, com hosts fixos, limite de resposta, timeout e testes sem rede.
+Adaptadores de handoff cobrem LinkedIn, Catho, InfoJobs, Gupy, Vagas.com.br, Trampos, Programathor, Revelo, Workana, 99Freelas, Indeed, Remote Rocketship, Himalayas, Instagram e Facebook. Qualquer outro endereço HTTP ou HTTPS recebe handoff genérico seguro. Gupy, Greenhouse e Lever têm leitura opcional de fontes públicas estruturadas, com hosts fixos, limite de resposta, timeout e testes sem rede.
 
 | Função | O que acontece |
 |---|---|
 | Buscar | Gera consultas públicas por domínio; não raspa páginas |
-| Importar | Lê somente endpoints públicos Greenhouse/Lever; nunca páginas protegidas |
+| Importar | Lê somente fontes públicas Gupy/Greenhouse/Lever; nunca páginas protegidas |
+| Descobrir | Reconsulta Gupy/Greenhouse/Lever configurados, deduplica e mantém histórico local |
 | Preparar | Identifica portal e entrega checklist de handoff |
 | Enviar | Sempre feito pelo candidato no canal oficial |
 
@@ -134,8 +136,8 @@ O mesmo `AGENTS.md` funciona com Codex, Hermes e OpenCode. `CLAUDE.md` conecta C
 ```text
 AGENTS.md                 regras para o agente
 adapters/portais.mjs      busca e handoff por portal
-providers/                Greenhouse/Lever públicos e transporte seguro
-lib/                      snapshots, bundles e acompanhamento local
+providers/                Gupy/Greenhouse/Lever públicos e transporte seguro
+lib/                      descoberta, snapshots, bundles e acompanhamento local
 evals/                    casos brasileiros sintéticos e replay offline
 config/perfil.md          suas preferências, ignoradas pelo Git
 curriculo.md              currículo mestre, ignorado pelo Git
@@ -152,7 +154,9 @@ output/                   materiais adaptados
 
 - [Guia de uso](docs/guia-de-uso.md): instalação, avaliação e acompanhamento.
 - [Adaptadores e agentes](docs/adaptadores-e-agentes.md): portais, Codex, Claude, Hermes, OpenRouter e OpenCode.
+- [Descoberta contínua no Brasil](docs/descoberta-brasil.md): fontes, dados, enriquecimento e agendamento a cada 6 horas.
 - [Privacidade e uso responsável](docs/privacidade-e-uso-responsavel.md): dados locais, revisão humana e limites.
+- [Navegação e limites de portais](docs/navegacao-e-limites-de-portais.md): como ler portais sem virar bot, tetos e ritmo, propostas ainda não validadas.
 - [Contrato de dados](DATA_CONTRACT.md): o que pode ser versionado e o que permanece privado.
 - [Segurança](SECURITY.md): prompt injection, dados pessoais e relato privado de vulnerabilidades.
 - [Como contribuir](CONTRIBUTING.md) e [Código de Conduta](CODE_OF_CONDUCT.md).

@@ -62,13 +62,16 @@ async function lerCorpoLimitado(response, maxBytes) {
   }
 }
 
-export async function obterJson(
+async function obterCorpo(
   valorUrl,
   {
     hostsPermitidos,
     fetchImpl = globalThis.fetch,
     timeoutMs = 10_000,
     maxBytes = 1_000_000,
+    accept,
+    tipoPermitido,
+    mensagemTipo,
   } = {},
 ) {
   if (!Array.isArray(hostsPermitidos) || hostsPermitidos.length === 0) {
@@ -84,7 +87,7 @@ export async function obterJson(
 
   try {
     const response = await fetchImpl(url.href, {
-      headers: { accept: "application/json" },
+      headers: { accept },
       redirect: "error",
       signal: controller.signal,
     });
@@ -95,20 +98,38 @@ export async function obterJson(
     if (!response.ok) throw new Error(`Fonte respondeu HTTP ${response.status}.`);
 
     const contentType = response.headers.get("content-type")?.split(";", 1)[0].trim();
-    if (!contentType || !JSON_CONTENT_TYPE.test(contentType)) {
-      throw new Error("Fonte não respondeu com JSON.");
+    if (!contentType || !tipoPermitido.test(contentType)) {
+      throw new Error(mensagemTipo);
     }
 
-    const texto = await lerCorpoLimitado(response, maxBytes);
-    try {
-      return JSON.parse(texto);
-    } catch {
-      throw new Error("Fonte retornou JSON inválido.");
-    }
+    return await lerCorpoLimitado(response, maxBytes);
   } catch (erro) {
     if (controller.signal.aborted) throw new Error(`Fonte excedeu timeout de ${timeoutMs} ms.`);
     throw erro;
   } finally {
     clearTimeout(timer);
   }
+}
+
+export async function obterJson(valorUrl, options = {}) {
+  const texto = await obterCorpo(valorUrl, {
+    ...options,
+    accept: "application/json",
+    tipoPermitido: JSON_CONTENT_TYPE,
+    mensagemTipo: "Fonte não respondeu com JSON.",
+  });
+  try {
+    return JSON.parse(texto);
+  } catch {
+    throw new Error("Fonte retornou JSON inválido.");
+  }
+}
+
+export function obterHtml(valorUrl, options = {}) {
+  return obterCorpo(valorUrl, {
+    ...options,
+    accept: "text/html",
+    tipoPermitido: /^text\/html$/i,
+    mensagemTipo: "Fonte não respondeu com HTML.",
+  });
 }

@@ -2,8 +2,9 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import { buscarVagasGreenhouse } from "../providers/greenhouse.mjs";
+import { buscarVagasGupy } from "../providers/gupy.mjs";
 import { buscarVagasLever } from "../providers/lever.mjs";
-import { obterJson } from "../providers/transport.mjs";
+import { obterHtml, obterJson } from "../providers/transport.mjs";
 
 const CAPTURED_AT = "2026-08-13T12:00:00.000Z";
 const greenhouseFixture = {
@@ -26,11 +27,34 @@ const leverFixture = [
     hostedUrl: "https://jobs.lever.co/acme/abc-123",
   },
 ];
+const gupyFixture = {
+  props: {
+    pageProps: {
+      jobs: [
+        {
+          id: 456,
+          title: "Analista de Mídia Paga",
+          department: "Marketing",
+          type: "vacancy_type_effective",
+          workplace: { workplaceType: "remote", address: { country: "Brasil", stateShortName: "SP", city: "São Paulo" } },
+        },
+      ],
+    },
+  },
+};
 
 function fetchFixture(payload, { status = 200, contentType = "application/json", inspect } = {}) {
   return async (url, init) => {
     inspect?.(url, init);
     return new Response(JSON.stringify(payload), { status, headers: { "content-type": contentType } });
+  };
+}
+
+function fetchHtml(payload, options = {}) {
+  const html = `<html><script id="__NEXT_DATA__" type="application/json">${JSON.stringify(payload)}</script></html>`;
+  return async (url, init) => {
+    options.inspect?.(url, init);
+    return new Response(html, { status: options.status ?? 200, headers: { "content-type": options.contentType ?? "text/html; charset=utf-8" } });
   };
 }
 
@@ -98,11 +122,42 @@ test("Lever EU usa somente hosts fixos da instância", async () => {
   await assert.rejects(() => buscarVagasLever("acme", { instance: "outro" }), /Instância Lever inválida/);
 });
 
+test("Gupy usa somente o tenant informado e normaliza __NEXT_DATA__ público", async () => {
+  const vagas = await buscarVagasGupy("acme", {
+    fetchImpl: fetchHtml(gupyFixture, {
+      inspect(url, init) {
+        assert.equal(url, "https://acme.gupy.io/");
+        assert.equal(init.redirect, "error");
+        assert.equal(init.headers.accept, "text/html");
+      },
+    }),
+    now: () => new Date(CAPTURED_AT),
+  });
+
+  assert.deepEqual(vagas, [
+    {
+      id: "gupy:456",
+      providerId: "456",
+      source: "gupy",
+      sourceUrl: "https://acme.gupy.io/",
+      capturedAt: CAPTURED_AT,
+      title: "Analista de Mídia Paga",
+      location: "São Paulo / SP / Brasil",
+      description: "Marketing",
+      contract: "vacancy_type_effective",
+      workplaceType: "remote",
+      url: "https://acme.gupy.io/jobs/456",
+    },
+  ]);
+});
+
 test("slugs e URLs fora das listas fixas são rejeitados antes da rede", async () => {
   const nunca = () => assert.fail("fetch não deveria ser chamado");
 
   await assert.rejects(() => buscarVagasGreenhouse("acme.com", { fetchImpl: nunca }), /Board Greenhouse inválido/);
   await assert.rejects(() => buscarVagasLever("../acme", { fetchImpl: nunca }), /Site Lever inválido/);
+  await assert.rejects(() => buscarVagasGupy("acme.com", { fetchImpl: nunca }), /Tenant Gupy inválido/);
+  await assert.rejects(() => buscarVagasGupy("acme_test", { fetchImpl: nunca }), /Tenant Gupy inválido/);
   await assert.rejects(
     () => obterJson("http://api.lever.co/v0/postings/acme", { hostsPermitidos: ["api.lever.co"], fetchImpl: nunca }),
     /fora da lista HTTPS/,
@@ -123,6 +178,10 @@ test("transporte recusa redirecionamento, tipo incorreto, excesso e timeout", as
   await assert.rejects(
     () => obterJson("https://api.lever.co/jobs", { ...options, fetchImpl: fetchFixture({}, { contentType: "text/html" }) }),
     /não respondeu com JSON/,
+  );
+  await assert.rejects(
+    () => obterHtml("https://api.lever.co/jobs", { ...options, fetchImpl: fetchFixture({}, { contentType: "application/json" }) }),
+    /não respondeu com HTML/,
   );
   await assert.rejects(
     () =>
@@ -160,4 +219,5 @@ test("payloads malformados e URLs de vaga inesperadas são rejeitados", async ()
       }),
     /fora da lista HTTPS/,
   );
+  await assert.rejects(() => buscarVagasGupy("acme", { fetchImpl: fetchHtml({ props: {} }) }), /Payload Gupy malformado/);
 });

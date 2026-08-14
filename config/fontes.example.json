@@ -1,0 +1,10 @@
+{
+  "fontes": [
+    { "provider": "gupy", "id": "conexasaude", "company": "Conexa Saúde" },
+    { "provider": "gupy", "id": "grupoboticario", "company": "Grupo Boticário" },
+    { "provider": "gupy", "id": "memed", "company": "Memed" },
+    { "provider": "gupy", "id": "asaas", "company": "Asaas" },
+    { "provider": "gupy", "id": "pagseguro", "company": "PagBank" },
+    { "provider": "gupy", "id": "riachuelo", "company": "Riachuelo" }
+  ]
+}

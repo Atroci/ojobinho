@@ -4,13 +4,13 @@
 
 `npm run buscar -- "termo"` cria buscas públicas por domínio, sem scraping. `npm run portal -- "URL"` reconhece portais conhecidos e explica o próximo passo. Um adaptador genérico aceita qualquer URL HTTP ou HTTPS.
 
-Adaptador significa normalizar origem e preparar handoff. Não significa preencher, clicar ou enviar. Login, CAPTCHA, termos e ação final continuam sob controle do candidato.
+Adaptador significa normalizar origem e preparar handoff. Não significa preencher, clicar ou enviar. Login, CAPTCHA, termos e ação final continuam sob controle do candidato. Como navegar portais sem virar bot, com parâmetros operacionais concretos: [navegação e limites de portais](navegacao-e-limites-de-portais.md).
 
 Portais reconhecidos: LinkedIn, Catho, InfoJobs, Gupy, Vagas.com.br, Trampos, Programathor, Revelo, Workana, 99Freelas, Indeed, Remote Rocketship, Himalayas, Instagram e Facebook.
 
 ## Fontes públicas estruturadas
 
-`npm run greenhouse -- <board>` e `npm run lever -- <site> [global|eu]` consultam somente APIs públicas sem autenticação. Slugs, HTTPS, hosts, redirecionamentos, tipo JSON, tamanho e timeout são validados. Testes usam fixtures e nunca dependem de rede.
+`npm run descobrir` consulta tenants Gupy e boards Greenhouse/Lever declarados em `config/fontes.json`. Os comandos `npm run greenhouse -- <board>` e `npm run lever -- <site> [global|eu]` continuam disponíveis para consultas isoladas. Tudo usa fonte pública sem autenticação; slugs, HTTPS, hosts, redirecionamentos, tipo de conteúdo, tamanho e timeout são validados. Testes usam fixtures e nunca dependem de rede.
 
 Não há scraping de LinkedIn, Catho ou InfoJobs. Conteúdo retornado continua não confiável: confirme empresa, URL e requisitos antes de criar snapshot ou material.
 

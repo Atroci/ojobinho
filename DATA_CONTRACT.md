@@ -9,6 +9,7 @@ O repositório aceita somente sistema, documentação, exemplos sem dados reais 
 Os caminhos abaixo são dados do candidato e ficam ignorados pelo Git:
 
 - `config/perfil.md`
+- `config/fontes.json`
 - `curriculo.md`
 - `tracker.csv`
 - `data/pipeline.md`
@@ -21,6 +22,8 @@ Os caminhos abaixo são dados do candidato e ficam ignorados pelo Git:
 `data/applications/<application-id>.json` referencia o snapshot por ID e guarda currículo adaptado, mensagem, respostas, nomes de anexos, revisão e decisão de reutilização (`new`, `revised` ou `reused`). O módulo apenas grava o bundle; não envia candidatura, mensagem, formulário ou arquivo.
 
 `data/history/` guarda eventos locais de status; `data/interview/` guarda histórias e anotações privadas; `data/input/` recebe JSON temporário usado pelos comandos locais.
+
+`data/descobertas.json` guarda a fila normalizada das fontes públicas configuradas. Cada registro mantém identificador da origem, empresa, URL, primeira e última observação, última checagem e estado `ativa` ou `indisponivel`. Uma falha de fonte não altera o último estado conhecido.
 
 IDs e nomes de anexos não aceitam caminhos. Gravações recusam arquivo existente, salvo quando o chamador passa explicitamente `replace: true`.
 
