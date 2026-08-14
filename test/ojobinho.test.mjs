@@ -12,6 +12,7 @@ async function projetoTemporario() {
   await mkdir(join(base, "config"), { recursive: true });
   await mkdir(join(base, "data"), { recursive: true });
   await writeFile(join(base, "config/perfil.example.md"), "perfil\n");
+  await writeFile(join(base, "config/fontes.example.json"), '{"fontes":[]}\n');
   await writeFile(join(base, "curriculo.example.md"), "currículo\n");
   await writeFile(join(base, "tracker.example.csv"), "status\n");
   await writeFile(join(base, "data/pipeline.example.md"), "# Pipeline\n");
@@ -24,7 +25,7 @@ test("iniciar cria dados locais sem sobrescrever arquivos existentes", async () 
 
   const criados = await iniciar(base);
 
-  assert.deepEqual(criados, ["config/perfil.md", "tracker.csv", "data/pipeline.md"]);
+  assert.deepEqual(criados, ["config/perfil.md", "config/fontes.json", "tracker.csv", "data/pipeline.md"]);
   assert.equal(await readFile(join(base, "curriculo.md"), "utf8"), "meu currículo\n");
   assert.deepEqual(await diagnosticar(base), []);
 });

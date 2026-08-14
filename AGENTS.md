@@ -4,11 +4,11 @@ Copiloto local de candidaturas para brasileiros. Responda em português do Brasi
 
 ## Começo de sessão
 
-1. Leia `config/perfil.md`, `curriculo.md`, `data/pipeline.md` e `tracker.csv`.
+1. Leia `config/perfil.md`, `config/fontes.json`, `curriculo.md`, `data/pipeline.md` e `tracker.csv`.
 2. Se algum estiver ausente, peça ao usuário para executar `npm run init` e preencher perfil e currículo.
 3. Para cada vaga, siga `modes/avaliar.md`. Só prepare candidatura quando a nota for pelo menos 4,0 ou quando o usuário decidir prosseguir.
 4. Use `modes/aplicar.md` para gerar os materiais.
-5. Para pesquisa ampla, use `npm run buscar -- "termo"`. Para reconhecer o fluxo de um anúncio, use `npm run portal -- "URL"`.
+5. Para pesquisa ampla, use `npm run buscar -- "termo"`. Para atualizar fontes públicas aprovadas, use `npm run descobrir`. Para reconhecer o fluxo de um anúncio, use `npm run portal -- "URL"`.
 
 ## Limites
 

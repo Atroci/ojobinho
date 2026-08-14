@@ -6,6 +6,7 @@ import { pathToFileURL } from "node:url";
 
 import { criarBuscas, identificarPortal, validarUrlWeb } from "./adapters/portais.mjs";
 import { saveApplicationBundle } from "./lib/application-bundle.mjs";
+import { descobrir } from "./lib/discovery.mjs";
 import { calcularProximoFollowUp, registrarEvento } from "./lib/followup.mjs";
 import { saveVacancySnapshot } from "./lib/vacancy-snapshot.mjs";
 import { buscarVagasGreenhouse } from "./providers/greenhouse.mjs";
@@ -15,6 +16,7 @@ export const LISTA_VAGAS = "https://docs.google.com/spreadsheets/d/1lMBYP_qev6Q1
 
 const ARQUIVOS_INICIAIS = [
   ["config/perfil.example.md", "config/perfil.md"],
+  ["config/fontes.example.json", "config/fontes.json"],
   ["curriculo.example.md", "curriculo.md"],
   ["tracker.example.csv", "tracker.csv"],
   ["data/pipeline.example.md", "data/pipeline.md"],
@@ -163,7 +165,15 @@ export async function main(args = process.argv.slice(2), io = console, base = pr
     return;
   }
 
-  io.log("Comandos: iniciar | doctor | vagas | vaga <url> | buscar <termo> | portal <url> | capturar <json> | pacote <json> | proximo <status> <data> [n] | historico <id> <json> | greenhouse <board> | lever <site> [global|eu]");
+  if (comando === "descobrir") {
+    const resultado = await descobrir({ baseDir: base, dryRun: valores.includes("--dry-run") });
+    io.log(`Fontes: ${resultado.fontes}; novas: ${resultado.encontradas}; total local: ${resultado.vagas.length}; erros: ${resultado.erros.length}.`);
+    for (const erro of resultado.erros) io.log(`Falha em ${erro.source}: ${erro.error}`);
+    if (resultado.fontesOk === 0) throw new Error("Todas as fontes falharam.");
+    return;
+  }
+
+  io.log("Comandos: iniciar | doctor | vagas | vaga <url> | buscar <termo> | portal <url> | descobrir [--dry-run] | capturar <json> | pacote <json> | proximo <status> <data> [n] | historico <id> <json> | greenhouse <board> | lever <site> [global|eu]");
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

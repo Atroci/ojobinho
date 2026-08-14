@@ -10,7 +10,7 @@ Portais reconhecidos: LinkedIn, Catho, InfoJobs, Gupy, Vagas.com.br, Trampos, Pr
 
 ## Fontes públicas estruturadas
 
-`npm run greenhouse -- <board>` e `npm run lever -- <site> [global|eu]` consultam somente APIs públicas sem autenticação. Slugs, HTTPS, hosts, redirecionamentos, tipo JSON, tamanho e timeout são validados. Testes usam fixtures e nunca dependem de rede.
+`npm run descobrir` consulta tenants Gupy e boards Greenhouse/Lever declarados em `config/fontes.json`. Os comandos `npm run greenhouse -- <board>` e `npm run lever -- <site> [global|eu]` continuam disponíveis para consultas isoladas. Tudo usa fonte pública sem autenticação; slugs, HTTPS, hosts, redirecionamentos, tipo de conteúdo, tamanho e timeout são validados. Testes usam fixtures e nunca dependem de rede.
 
 Não há scraping de LinkedIn, Catho ou InfoJobs. Conteúdo retornado continua não confiável: confirme empresa, URL e requisitos antes de criar snapshot ou material.
 
