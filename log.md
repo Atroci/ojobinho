@@ -7,3 +7,4 @@
 ## [2026-08-13] change | Adicionados snapshots, bundles, providers Greenhouse/Lever, golden evals, acompanhamento e preparo de entrevista
 ## [2026-08-13] change | Adicionado guia de navegação e limites de portais com parâmetros validados, doutrina de navegador humano e propostas ainda não validadas
 ## [2026-08-14] change | Adicionada descoberta contínua BR com Gupy, deduplicação, histórico local e runbook systemd de 6 horas
+## [2026-08-19] change | Motor determinístico de candidaturas vendorizado de job-application-agent 3.1.1 em lib/motor (portões, nota, duplicatas, rodadas, fila de atenção, ledgers), exposto como `npm run motor`; telemetria removida, envio humano mantido; skill do Hermes Agent em hermes/

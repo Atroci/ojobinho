@@ -15,6 +15,7 @@
     "buscar": "node ojobinho.mjs buscar",
     "portal": "node ojobinho.mjs portal",
     "descobrir": "node ojobinho.mjs descobrir",
+    "motor": "node ojobinho.mjs motor",
     "capturar": "node ojobinho.mjs capturar",
     "pacote": "node ojobinho.mjs pacote",
     "proximo": "node ojobinho.mjs proximo",

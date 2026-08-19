@@ -23,6 +23,8 @@ Os caminhos abaixo são dados do candidato e ficam ignorados pelo Git:
 
 `data/history/` guarda eventos locais de status; `data/interview/` guarda histórias e anotações privadas; `data/input/` recebe JSON temporário usado pelos comandos locais.
 
+`data/motor/` guarda o estado do motor determinístico (`lib/motor/README.md`): perfil estruturado e currículo canônico do candidato, ledgers `applications.ndjson` e `outcomes.ndjson` (só crescem), rodadas, fila de atenção e fricção. Nada desse diretório sai da máquina.
+
 `data/descobertas.json` guarda a fila normalizada das fontes públicas configuradas. Cada registro mantém identificador da origem, empresa, URL, primeira e última observação, última checagem e estado `ativa` ou `indisponivel`. Uma falha de fonte não altera o último estado conhecido.
 
 IDs e nomes de anexos não aceitam caminhos. Gravações recusam arquivo existente, salvo quando o chamador passa explicitamente `replace: true`.

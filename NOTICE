@@ -2,3 +2,8 @@ oJobinho
 Copyright 2026 Atroci
 
 This product includes software developed by Atroci contributors.
+
+lib/motor/ contains code vendored from job-application-agent 3.1.1
+(https://www.npmjs.com/package/job-application-agent), Copyright (c) 2026,
+licensed under the MIT License. See lib/motor/LICENSE-MIT. Local changes are
+marked with "ponytail:" comments and summarized in lib/motor/README.md.
