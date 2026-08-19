@@ -35,3 +35,10 @@
 - oJobinho não adota framework de automação de navegador: o projeto não preenche nem envia, então não há navegador a dirigir.
 - Camoufox fica registrado como proposta com plano de avaliação, sem uso nem medição; mudar a base do navegador altera detecção, não altera termos de uso.
 - Detalhes, números e origem de cada item em `docs/navegacao-e-limites-de-portais.md`.
+
+## [2026-08-19] Motor determinístico vendorizado
+
+- `lib/motor/` vem de `job-application-agent@3.1.1` (MIT) e entra como a camada determinística abaixo da rubrica A-G: portões duros, nota 0-100 (nota / 20 = rubrica), duplicatas, rodadas, fila de atenção, ledgers que só crescem.
+- Telemetria removida (cliente nulo), perfil em arquivo 0600 em Linux, `review-each` como único modo, `autonomy grant` recusa, `approval` só `APPROVE SUBMIT`. O candidato continua sendo quem envia.
+- Uma única fonte: este repositório. VPS e agentes (Hermes Agent incluído, ver `hermes/`) clonam e puxam; não existe cópia paralela do motor em outro lugar.
+- Perfil do motor (JSON) e `config/perfil.md` coexistem por enquanto: o JSON alimenta os portões, o Markdown alimenta o relatório do agente. Unificar só quando houver dado de uso.

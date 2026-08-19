@@ -49,6 +49,7 @@ Avalie esta vaga com oJobinho: https://empresa.com/vaga/123
 | Calcular próximo contato | `npm run proximo -- candidatura-enviada 2026-08-14 0` |
 | Consultar Greenhouse público | `npm run greenhouse -- empresa` |
 | Consultar Lever público | `npm run lever -- empresa` |
+| Avaliar com portões, checar duplicata, organizar lote | `npm run motor -- score --stdin` (ver `lib/motor/README.md`) |
 | Validar segurança | `npm run security` |
 | Conferir configuração | `npm run doctor` |
 | Rodar testes | `npm test` |
@@ -154,6 +155,7 @@ output/                   materiais adaptados
 
 - [Guia de uso](docs/guia-de-uso.md): instalação, avaliação e acompanhamento.
 - [Adaptadores e agentes](docs/adaptadores-e-agentes.md): portais, Codex, Claude, Hermes, OpenRouter e OpenCode.
+- [Motor determinístico](lib/motor/README.md): portões, nota 0-100, duplicatas, rodadas, fila de atenção e ledgers locais; [no Hermes](hermes/README.md).
 - [Descoberta contínua no Brasil](docs/descoberta-brasil.md): fontes, dados, enriquecimento e agendamento a cada 6 horas.
 - [Privacidade e uso responsável](docs/privacidade-e-uso-responsavel.md): dados locais, revisão humana e limites.
 - [Navegação e limites de portais](docs/navegacao-e-limites-de-portais.md): como ler portais sem virar bot, tetos e ritmo, propostas ainda não validadas.

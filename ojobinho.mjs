@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
+import { spawnSync } from "node:child_process";
 import { appendFile, copyFile, lstat, mkdir, readFile, stat } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
-import { pathToFileURL } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
 import { criarBuscas, identificarPortal, validarUrlWeb } from "./adapters/portais.mjs";
 import { saveApplicationBundle } from "./lib/application-bundle.mjs";
@@ -165,6 +166,16 @@ export async function main(args = process.argv.slice(2), io = console, base = pr
     return;
   }
 
+  if (comando === "motor") {
+    // Motor determinístico (lib/motor): nota com portões, duplicatas, rodadas, fila de atenção, ledgers.
+    // Estado privado em data/motor/ (ou JOB_APPLICATION_AGENT_STATE_DIR). Nunca envia nada.
+    const motor = fileURLToPath(new URL("./lib/motor/job-application.mjs", import.meta.url));
+    const env = { ...process.env, JOB_APPLICATION_AGENT_STATE_DIR: process.env.JOB_APPLICATION_AGENT_STATE_DIR ?? resolve(base, "data/motor") };
+    const resultado = spawnSync(process.execPath, [motor, ...valores], { env, stdio: "inherit" });
+    if (resultado.status !== 0) process.exitCode = resultado.status ?? 1;
+    return;
+  }
+
   if (comando === "descobrir") {
     const resultado = await descobrir({ baseDir: base, dryRun: valores.includes("--dry-run") });
     io.log(`Fontes: ${resultado.fontes}; novas: ${resultado.encontradas}; total local: ${resultado.vagas.length}; erros: ${resultado.erros.length}.`);
@@ -173,7 +184,7 @@ export async function main(args = process.argv.slice(2), io = console, base = pr
     return;
   }
 
-  io.log("Comandos: iniciar | doctor | vagas | vaga <url> | buscar <termo> | portal <url> | descobrir [--dry-run] | capturar <json> | pacote <json> | proximo <status> <data> [n] | historico <id> <json> | greenhouse <board> | lever <site> [global|eu]");
+  io.log("Comandos: iniciar | doctor | vagas | vaga <url> | buscar <termo> | portal <url> | descobrir [--dry-run] | capturar <json> | pacote <json> | proximo <status> <data> [n] | historico <id> <json> | greenhouse <board> | lever <site> [global|eu] | motor <area> <acao> [--stdin]");
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
