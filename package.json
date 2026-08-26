@@ -17,6 +17,7 @@
     "descobrir": "node ojobinho.mjs descobrir",
     "motor": "node ojobinho.mjs motor",
     "capturar": "node ojobinho.mjs capturar",
+    "duplicatas": "node ojobinho.mjs duplicatas",
     "pacote": "node ojobinho.mjs pacote",
     "proximo": "node ojobinho.mjs proximo",
     "historico": "node ojobinho.mjs historico",
