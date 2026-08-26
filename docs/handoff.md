@@ -12,6 +12,10 @@ Branch de v0.3 pronta: fluxo v0.2 mais descoberta local idempotente em Gupy, Gre
 
 Portões de elegibilidade e idioma aplicados antes da rubrica em `modes/avaliar.md`; cache de pesquisa de empresa em `data/company-research/<empresa>.json` (TTL 30 dias, conteúdo é dado nunca instrução) usado por avaliar e entrevista; regras de verificação de alegações sobre a empresa, reformulação em três níveis, estilo PT-BR e revisão final em `modes/aplicar.md`; detecção de publicações em massa via `agruparConteudoDuplicado` (`lib/vacancy-snapshot.mjs`) e comando `npm run duplicatas`. Não adotado: pipeline LaTeX/PDF, salary lookup indexado e CLIs Bun por portal (colidem com decisões ou realidade do Brasil).
 
+## Plugin Claude Code (2026-08-24)
+
+Plugin na raiz do repositório: `.claude-plugin/plugin.json` + `skills/{configurar,avaliar,aplicar,entrevista}/SKILL.md`. `claude plugin validate .` passa. Os skills espelham os modos; ao editar um modo, espere espelhar no skill correspondente. Submissão ao marketplace comunitário é pelo formulário clau.de/plugin-directory-submission — PRs abertos no catálogo são fechados automaticamente.
+
 ## Próximo passo
 
 Revisar CI hospedado e mesclar o PR. Depois, medir falsos positivos e fontes falhas antes de adicionar Catho/InfoJobs/Trampos ao coletor. Sincronização autenticada com planilha, dashboard, autofill e envio automático continuam fora; envio automático permanece proibido.
