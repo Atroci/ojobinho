@@ -1,0 +1,13 @@
+{
+  "name": "ojobinho",
+  "description": "Copiloto local de candidaturas para o mercado brasileiro: avalia vagas com portões de elegibilidade e idioma, adapta currículo sem inventar fatos e prepara entrevistas. Toda candidatura termina em revisão humana.",
+  "version": "0.2.0",
+  "author": {
+    "name": "Hugo Carvalho",
+    "url": "https://github.com/Atroci"
+  },
+  "homepage": "https://github.com/Atroci/ojobinho",
+  "repository": "https://github.com/Atroci/ojobinho",
+  "license": "Apache-2.0",
+  "keywords": ["jobs", "vagas", "brasil", "job-search", "career", "pt-br"]
+}

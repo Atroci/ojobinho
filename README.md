@@ -37,6 +37,24 @@ Preencha `config/perfil.md` e `curriculo.md`. Depois abra Codex, Claude Code ou 
 Avalie esta vaga com oJobinho: https://empresa.com/vaga/123
 ```
 
+## Instalar como plugin do Claude Code
+
+```bash
+claude plugin marketplace add anthropics/claude-plugins-community
+claude plugin install ojobinho@claude-community
+```
+
+Depois de instalado, os comandos ficam disponíveis como skills:
+
+| Skill | O que faz |
+|---|---|
+| `/ojobinho:configurar` | Prepara perfil, currículo e tracker locais |
+| `/ojobinho:avaliar <URL>` | Avalia a vaga com portões e rubrica A-G |
+| `/ojobinho:aplicar <vaga>` | Adapta currículo e escreve mensagem para revisão |
+| `/ojobinho:entrevista <vaga>` | Prepara entrevista com fatos confirmados |
+
+Sem plugin, os mesmos fluxos funcionam em qualquer agente compatível com `AGENTS.md`.
+
 | Quero... | Faça... |
 |---|---|
 | Encontrar vagas para testar | `npm run vagas` |
