@@ -9,7 +9,7 @@ import { criarBuscas, identificarPortal, validarUrlWeb } from "./adapters/portai
 import { saveApplicationBundle } from "./lib/application-bundle.mjs";
 import { descobrir } from "./lib/discovery.mjs";
 import { calcularProximoFollowUp, registrarEvento } from "./lib/followup.mjs";
-import { saveVacancySnapshot } from "./lib/vacancy-snapshot.mjs";
+import { agruparConteudoDuplicado, saveVacancySnapshot } from "./lib/vacancy-snapshot.mjs";
 import { buscarVagasGreenhouse } from "./providers/greenhouse.mjs";
 import { buscarVagasLever } from "./providers/lever.mjs";
 
@@ -130,6 +130,13 @@ export async function main(args = process.argv.slice(2), io = console, base = pr
     return;
   }
 
+  if (comando === "duplicatas") {
+    const snapshots = await lerEntradaJson(valores[0], base);
+    const grupos = agruparConteudoDuplicado(snapshots);
+    io.log(grupos.length ? JSON.stringify(grupos, null, 2) : "Nenhuma publicação duplicada encontrada.");
+    return;
+  }
+
   if (comando === "capturar") {
     const snapshot = await saveVacancySnapshot(await lerEntradaJson(valores[0], base), { baseDir: base });
     io.log(`Snapshot local: ${snapshot.id}`);
@@ -166,6 +173,13 @@ export async function main(args = process.argv.slice(2), io = console, base = pr
     return;
   }
 
+  if (comando === "duplicatas") {
+    const snapshots = await lerEntradaJson(valores[0], base);
+    const grupos = agruparConteudoDuplicado(snapshots);
+    io.log(grupos.length ? JSON.stringify(grupos, null, 2) : "Nenhuma publicação duplicada encontrada.");
+    return;
+  }
+
   if (comando === "motor") {
     // Motor determinístico (lib/motor): nota com portões, duplicatas, rodadas, fila de atenção, ledgers.
     // Estado privado em data/motor/ (ou JOB_APPLICATION_AGENT_STATE_DIR). Nunca envia nada.
@@ -184,7 +198,7 @@ export async function main(args = process.argv.slice(2), io = console, base = pr
     return;
   }
 
-  io.log("Comandos: iniciar | doctor | vagas | vaga <url> | buscar <termo> | portal <url> | descobrir [--dry-run] | capturar <json> | pacote <json> | proximo <status> <data> [n] | historico <id> <json> | greenhouse <board> | lever <site> [global|eu] | motor <area> <acao> [--stdin]");
+  io.log("Comandos: iniciar | doctor | vagas | vaga <url> | buscar <termo> | portal <url> | descobrir [--dry-run] | capturar <json> | duplicatas <json> | pacote <json> | proximo <status> <data> [n] | historico <id> <json> | greenhouse <board> | lever <site> [global|eu] | motor <area> <acao> [--stdin]");
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

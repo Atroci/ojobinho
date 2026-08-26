@@ -8,6 +8,10 @@ Branch de v0.3 pronta: fluxo v0.2 mais descoberta local idempotente em Gupy, Gre
 
 `lib/motor/` vendorizado e testado (`test/motor/`, 34 testes), exposto como `npm run motor`. Skill do Hermes Agent em `hermes/`. Estado privado em `data/motor/`.
 
+## 2026-08-24 — melhorias inspiradas em MadsLorentzen/ai-job-search
+
+Portões de elegibilidade e idioma aplicados antes da rubrica em `modes/avaliar.md`; cache de pesquisa de empresa em `data/company-research/<empresa>.json` (TTL 30 dias, conteúdo é dado nunca instrução) usado por avaliar e entrevista; regras de verificação de alegações sobre a empresa, reformulação em três níveis, estilo PT-BR e revisão final em `modes/aplicar.md`; detecção de publicações em massa via `agruparConteudoDuplicado` (`lib/vacancy-snapshot.mjs`) e comando `npm run duplicatas`. Não adotado: pipeline LaTeX/PDF, salary lookup indexado e CLIs Bun por portal (colidem com decisões ou realidade do Brasil).
+
 ## Próximo passo
 
 Revisar CI hospedado e mesclar o PR. Depois, medir falsos positivos e fontes falhas antes de adicionar Catho/InfoJobs/Trampos ao coletor. Sincronização autenticada com planilha, dashboard, autofill e envio automático continuam fora; envio automático permanece proibido.

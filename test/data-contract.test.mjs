@@ -5,7 +5,7 @@ import { join } from "node:path";
 import test from "node:test";
 
 import { buildApplicationBundle, saveApplicationBundle } from "../lib/application-bundle.mjs";
-import { buildVacancySnapshot, saveVacancySnapshot } from "../lib/vacancy-snapshot.mjs";
+import { agruparConteudoDuplicado, buildVacancySnapshot, saveVacancySnapshot } from "../lib/vacancy-snapshot.mjs";
 
 const VACANCY = {
   sourceUrl: "HTTPS://EXAMPLE.COM:443/jobs/42#apply",
@@ -69,6 +69,27 @@ test("grava somente em diretórios privados e não sobrescreve sem replace", asy
   await saveApplicationBundle(application(snapshot.id, "2026-08-15T13:00:00Z"), { baseDir, replace: true });
   const replaced = JSON.parse(await readFile(join(baseDir, "data/applications", `${bundle.id}.json`), "utf8"));
   assert.equal(replaced.createdAt, "2026-08-15T13:00:00.000Z");
+});
+
+test("agrupa a mesma descrição publicada sob URLs diferentes", () => {
+  const sp = buildVacancySnapshot({ ...VACANCY, sourceUrl: "https://empresa.com/vagas/1", capturedAt: "2026-08-13T13:00:00Z" });
+  const rj = buildVacancySnapshot({ ...VACANCY, sourceUrl: "https://empresa.com/vagas/2#detalhes", capturedAt: "2026-08-14T13:00:00Z" });
+  const outra = buildVacancySnapshot({
+    ...VACANCY,
+    text: `${VACANCY.text}\nPessoa Analista de Dados`,
+    sourceUrl: "https://empresa.com/vagas/3",
+    capturedAt: "2026-08-15T13:00:00Z",
+  });
+
+  assert.notEqual(sp.id, rj.id);
+  const grupos = agruparConteudoDuplicado([sp, rj, outra]);
+  assert.equal(grupos.length, 1);
+  assert.equal(grupos[0].contentSha256, sp.contentSha256);
+  assert.deepEqual(grupos[0].snapshots.map((s) => s.url), ["https://empresa.com/vagas/1", "https://empresa.com/vagas/2"]);
+
+  assert.deepEqual(agruparConteudoDuplicado([sp, outra]), []);
+  assert.throws(() => agruparConteudoDuplicado("não é array"), /array/);
+  assert.throws(() => agruparConteudoDuplicado([{ id: "vacancy-x", contentSha256: "ab", sourceUrl: "https://ok.com" }]), /snapshot de vaga inválido/);
 });
 
 test("gitignore cobre todos os caminhos privados do contrato", async () => {

@@ -59,6 +59,30 @@ test("adaptadores reconhecem portais, buscam sem scraping e mantêm envio humano
   assert.throws(() => criarBuscas(" "), /Informe cargo/);
 });
 
+test("CLI agrupa publicações duplicadas a partir de entrada privada", async () => {
+  const base = await projetoTemporario();
+  const logs = [];
+  const io = { log: (valor) => logs.push(valor) };
+  await mkdir(join(base, "data/input"), { recursive: true });
+
+  const snapshots = [
+    { id: "vacancy-" + "a".repeat(64), contentSha256: "c".repeat(64), sourceUrl: "https://empresa.com/vagas/1" },
+    { id: "vacancy-" + "b".repeat(64), contentSha256: "c".repeat(64), sourceUrl: "https://empresa.com/vagas/2" },
+    { id: "vacancy-" + "d".repeat(64), contentSha256: "e".repeat(64), sourceUrl: "https://empresa.com/vagas/3" },
+  ];
+  const caminho = "data/input/duplicatas.json";
+  await writeFile(join(base, caminho), JSON.stringify(snapshots));
+
+  await main(["duplicatas", caminho], io, base);
+  const grupos = JSON.parse(logs[0]);
+  assert.equal(grupos.length, 1);
+  assert.equal(grupos[0].snapshots.length, 2);
+
+  await writeFile(join(base, caminho), JSON.stringify([snapshots[0], snapshots[2]]));
+  await main(["duplicatas", caminho], io, base);
+  assert.equal(logs[1], "Nenhuma publicação duplicada encontrada.");
+});
+
 test("CLI cria snapshot somente por entrada privada e calcula próximo contato", async () => {
   const base = await projetoTemporario();
   const logs = [];

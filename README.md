@@ -45,6 +45,7 @@ Avalie esta vaga com oJobinho: https://empresa.com/vaga/123
 | Reconhecer fluxo do portal | `npm run portal -- "URL"` |
 | Colocar uma vaga na fila | `npm run vaga -- "URL"` |
 | Capturar descrição auditável | `npm run capturar -- data/input/vaga.json` |
+| Verificar anúncio publicado em vários lugares | `npm run duplicatas -- data/input/snapshots.json` |
 | Criar pacote de candidatura | `npm run pacote -- data/input/pacote.json` |
 | Calcular próximo contato | `npm run proximo -- candidatura-enviada 2026-08-14 0` |
 | Consultar Greenhouse público | `npm run greenhouse -- empresa` |
