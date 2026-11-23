@@ -12,6 +12,7 @@ import { calcularProximoFollowUp, registrarEvento } from "./lib/followup.mjs";
 import { agruparConteudoDuplicado, saveVacancySnapshot } from "./lib/vacancy-snapshot.mjs";
 import { buscarVagasGreenhouse } from "./providers/greenhouse.mjs";
 import { buscarVagasLever } from "./providers/lever.mjs";
+import { COMANDOS } from "./lib/careerops/verbs.mjs";
 
 export const LISTA_VAGAS = "https://docs.google.com/spreadsheets/d/1lMBYP_qev6Q1bKcxW_cngyjuoKEqPz4PGyp0V2Vfu4M/edit?gid=2034983413#gid=2034983413";
 
@@ -91,6 +92,13 @@ async function lerEntradaJson(caminho, base) {
 export async function main(args = process.argv.slice(2), io = console, base = process.cwd()) {
   const [comando = "ajuda", ...valores] = args;
   const valor = valores.join(" ");
+
+  if (COMANDOS.has(comando)) {
+    const { despachar } = await import("./lib/careerops/commands.mjs");
+    const codigo = await despachar(comando, valores, io, base);
+    if (codigo) process.exitCode = codigo;
+    return;
+  }
 
   if (comando === "iniciar") {
     const criados = await iniciar(base);
@@ -198,12 +206,12 @@ export async function main(args = process.argv.slice(2), io = console, base = pr
     return;
   }
 
-  io.log("Comandos: iniciar | doctor | vagas | vaga <url> | buscar <termo> | portal <url> | descobrir [--dry-run] | capturar <json> | duplicatas <json> | pacote <json> | proximo <status> <data> [n] | historico <id> <json> | greenhouse <board> | lever <site> [global|eu] | motor <area> <acao> [--stdin]");
+  io.log("Comandos: iniciar | doctor | vagas | vaga <url> | buscar <termo> | portal <url> | descobrir [--dry-run] | capturar <json> | duplicatas <json> | pacote <json> | proximo <status> <data> [n] | historico <id> <json> | greenhouse <board> | lever <site> [global|eu] | motor <area> <acao> [--stdin] | scan --all|--due|--source <id> [--json] | evaluate --new --profile emprego|freelance [--json] | digest --today [--json] | status [--yield] | tune | ingest --source <id> --file <json> | prepare --id <id> | funnel add|list | export --csv | shadow | migrar-descobertas");
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   main().catch((erro) => {
     console.error(erro.message);
-    process.exitCode = 1;
+    process.exitCode = erro.exitCode ?? 1;
   });
 }

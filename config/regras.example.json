@@ -1,0 +1,14 @@
+{
+  "emprego": {
+    "include_any": ["wordpress", "seo", "ads", "web", "desenvolvedor", "developer", "marketing", "tracking", "analytics", "frontend", "front-end"],
+    "exclude": ["sem remuneração", "trabalho gratuito", "unpaid"],
+    "locations_allow": ["portugal", "lisboa", "porto", "brasil", "brazil", "remote", "remoto", "europe", "europa", "worldwide", "anywhere", "emea", "latam"]
+  },
+  "freelance": {
+    "include_any": ["wordpress", "seo", "ads", "ga4", "tracking", "web", "automation", "desenvolvedor", "developer"],
+    "exclude": ["sem remuneração", "trabalho gratuito", "unpaid"],
+    "max_age_hours": 72,
+    "max_proposals": 40,
+    "pay_floor_hourly_usd": 25
+  }
+}

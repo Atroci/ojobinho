@@ -10,10 +10,12 @@ Copiloto local de candidaturas para brasileiros. Responda em português do Brasi
 4. Use `modes/aplicar.md` para gerar os materiais.
 5. Para nota determinística com portões, checagem de duplicata, lotes e fila do que precisa de pessoa, use `npm run motor -- <area> <acao>` (`lib/motor/README.md`; nota do motor / 20 = nota da rubrica).
 6. Para pesquisa ampla, use `npm run buscar -- "termo"`. Para atualizar fontes públicas aprovadas, use `npm run descobrir`. Para reconhecer o fluxo de um anúncio, use `npm run portal -- "URL"`.
+7. Para a fila contínua, use `node ojobinho.mjs scan --due --json`, `evaluate --new`, `digest --today` e `status`. O scan não chama modelo. O SQLite em `data/ojobinho.db` é a fonte de verdade das vagas coletadas. Siga `docs/skills/ojobinho/SKILL.md`.
 
 ## Limites
 
 - Nunca invente experiência, formação, salário, idioma, certificação ou resultado.
+- O scan não chama modelo, não faz login, não resolve CAPTCHA e não envia nada.
 - Nunca envie candidatura, e-mail ou mensagem; nunca clique em “Enviar”. O candidato revisa e executa a ação final.
 - Não armazene CPF, RG, senha, token, dados bancários ou endereço residencial.
 - Não contorne login, CAPTCHA, bloqueio de portal ou limite de plataforma.

@@ -5,7 +5,7 @@
 <p align="center">
   <a href="LICENSE"><img alt="Licença Apache 2.0" src="https://img.shields.io/badge/licen%C3%A7a-Apache--2.0-147A3D"></a>
   <a href="https://github.com/Atroci/ojobinho/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/Atroci/ojobinho/actions/workflows/ci.yml/badge.svg"></a>
-  <img alt="Node 20 ou superior" src="https://img.shields.io/badge/Node.js-20%2B-147A3D">
+  <img alt="Node 22.13 ou superior" src="https://img.shields.io/badge/Node.js-22.13%2B-147A3D">
   <img alt="Português do Brasil" src="https://img.shields.io/badge/idioma-PT--BR-FFCC29">
   <img alt="Revisão humana obrigatória" src="https://img.shields.io/badge/envio-revis%C3%A3o_humana-002776">
 </p>
@@ -69,6 +69,8 @@ Sem plugin, os mesmos fluxos funcionam em qualquer agente compatível com `AGENT
 | Consultar Greenhouse público | `npm run greenhouse -- empresa` |
 | Consultar Lever público | `npm run lever -- empresa` |
 | Avaliar com portões, checar duplicata, organizar lote | `npm run motor -- score --stdin` (ver `lib/motor/README.md`) |
+| Varrer as fontes que estão no prazo | `node ojobinho.mjs scan --due --json` |
+| Ver o rendimento e o intervalo sugerido | `node ojobinho.mjs status --yield --json` |
 | Validar segurança | `npm run security` |
 | Conferir configuração | `npm run doctor` |
 | Rodar testes | `npm test` |
@@ -76,6 +78,18 @@ Sem plugin, os mesmos fluxos funcionam em qualquer agente compatível com `AGENT
 ![Da busca confusa a uma candidatura revisada e focada](assets/readme/da-vaga-a-candidatura.png)
 
 <p align="center"><em>Menos volume. Mais foco em vagas que fazem sentido para você.</em></p>
+
+## CareerOps
+
+A coleta contínua grava em `data/ojobinho.db` (SQLite do Node, fora do Git). O comando da rotina é um processo curto, sem modelo:
+
+```bash
+node ojobinho.mjs scan --due --json
+```
+
+O intervalo de cada fonte está em `config/agenda.json`. `tune` recomenda acelerar ou desacelerar a partir do rendimento medido. O resumo do dia (`digest --today`) sai em markdown curto para o chat do Grok Bot. A medição de sete dias, antes de desligar qualquer rotina antiga, está em [CareerOps](docs/careerops.md). A skill que o bot instala está em [docs/skills/ojobinho/SKILL.md](docs/skills/ojobinho/SKILL.md).
+
+Nada disso envia candidatura. Upwork, Workana e Freelanceradar não são raspados.
 
 ## Lista pública de oportunidades
 

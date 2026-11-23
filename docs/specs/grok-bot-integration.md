@@ -1,7 +1,7 @@
 # oJobinho x Grok Bot: Integration Specification v1
 
-Status: Proposed (draft for operator validation)
-Target: oJobinho 0.3.0
+Status: Accepted with operator decisions on 2026-11-23. Implementation lives on `cursor/careerops-v1-abb6`, branched from `ccr-f1f5fc67-d6wmdo`. Where this draft disagrees with the decisions below, the decisions win.
+Target: oJobinho 0.4.0
 Objective: Run low-cost, continuous job discovery and selectively invoke Grok Bot for evaluation and application preparation.
 
 ## 0. Repository baseline (checked against `main` at 0c0f3eb)
@@ -224,3 +224,18 @@ Suggested order: A, B, C first (foundation), then D, E, then F-J in any order, K
 | M | Seven-day validation instrumentation |
 
 Tracking issue: #21. Issues A to M are #8 to #20 in the same order (A=#8, B=#9, C=#10, D=#11, E=#12, F=#13, G=#14, H=#15, I=#16, J=#17, K=#18, L=#19, M=#20).
+
+## 14. Operator decisions (2026-11-23)
+
+- Q1. The Net-Empregos scanner is vendored at `adapters/net-empregos/scan.py`. The default runtime is a Node parser of the same search URLs (`pesquisa-empregos.asp` with the same `chaves`, `categoria`, `zona` and `tipo`). Python `search()` stays available as the reference and is not required by tests.
+- Q2. The Grok Bot is an assistant with a persistent Linux box, shell, Node and Python, and routines at least 5 minutes apart. There is no system cron. Scans are a routine, 3 to 6 times a day. The command itself stays deterministic and exits with one JSON object.
+- Q3. Verbs are on `ojobinho.mjs`, with the English names from this spec and from the CareerOps brief (`scan`, `evaluate`, `digest`, `status`, `tune`) plus Portuguese aliases (`varrer`, `avaliar`, `resumo`, `estado`, `rendimento`). `package.json` also exposes the `careerops` bin.
+- Q4. Real freelance rates and portfolio notes stay in gitignored `config/perfis/freelance.md`. The public tree only has an example with empty prices. Skill axes are the rubric fields, not a claim about a person.
+- Q5. Enabled collectors are the sources that answered in `PROVIDER_AUDIT-2026-11-23`, except Wellfound (Cloudflare, left off) and Computrabajo (crawl cap, BR host failed, left off).
+- Q6. The operator recorded the access verdicts in `config/source-capabilities.json` on 2026-11-23. Workana and Freelanceradar are email import only. Upwork is official-API import only. 99Freelas public listings are on, with no login. Net-Empregos keeps the current search pages.
+- Q7. One operator, one database.
+- Q8. The notification channel is the Grok Bot chat. `digest --today` prints short markdown, or JSON with `--json`.
+
+State choice, against section 11 of this draft: SQLite via `node:sqlite` is the source of truth for collected listings. `data/descobertas.json` remains the legacy `descobrir` file and can be imported. Minimum Node and CI move from 20 to 22.13.
+
+Scheduling choice, against section 7: the operator's box runs `scan --due` from a bot routine. A systemd timer stays documented for a VPS that actually has one. `tune` recommends a faster or slower interval from measured yield and does not apply it unless asked.

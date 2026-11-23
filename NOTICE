@@ -7,3 +7,13 @@ lib/motor/ contains code vendored from job-application-agent 3.1.1
 (https://www.npmjs.com/package/job-application-agent), Copyright (c) 2026,
 licensed under the MIT License. See lib/motor/LICENSE-MIT. Local changes are
 marked with "ponytail:" comments and summarized in lib/motor/README.md.
+
+adapters/sources/ reimplements public-feed field mappings from career-ops
+(https://github.com/career-ops-hq/career-ops) at commit 9d61e5a,
+Copyright (c) 2026 Santiago Fernández de Valderrama, MIT License.
+See adapters/sources/LICENSE-MIT and adapters/sources/PORT.md.
+The career-ops provider closure, undici and js-yaml are not included.
+
+adapters/net-empregos/scan.py is the operator's existing Net-Empregos scanner,
+vendored so the search URLs stay in this repository. The default runtime is
+the Node parser of those same pages.

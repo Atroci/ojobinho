@@ -147,3 +147,9 @@ Só avance quando os dados justificarem:
 - alerta apenas para novas vagas acima do limiar escolhido pelo candidato.
 
 Autoaplicação, login automático, CAPTCHA bypass, compra de dados pessoais e scraping de portal bloqueado ficam fora do produto.
+
+## CareerOps na rotina do Grok Bot
+
+`npm run descobrir` e o exemplo de systemd acima continuam válidos para o arquivo `data/descobertas.json` e para um VPS que tenha timer de sistema.
+
+No computador do operador não há cron. A varredura nova roda dentro de uma rotina do Grok Bot, 3 a 6 vezes por dia, com o comando `node ojobinho.mjs scan --due --json`. O processo não chama modelo e termina com um JSON curto. O intervalo mínimo de cada fonte está em `config/agenda.json`. Detalhe, rendimento e a medição de sete dias: [CareerOps](careerops.md).

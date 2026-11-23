@@ -1,6 +1,6 @@
 # Motor determinístico de candidaturas
 
-Código vendorizado de `job-application-agent@3.1.1` (npm, MIT, ver `LICENSE-MIT`) e adaptado ao oJobinho. Zero dependências, Node 20 ou superior. Ele não busca vaga, não abre navegador, não envia nada: recebe fatos já extraídos pelo agente e devolve decisões determinísticas e estado local.
+Código vendorizado de `job-application-agent@3.1.1` (npm, MIT, ver `LICENSE-MIT`) e adaptado ao oJobinho. O módulo não traz dependência de npm e não busca vaga, não abre navegador e não envia nada: recebe fatos já extraídos pelo agente e devolve decisões determinísticas e estado local. O aplicativo, por causa do SQLite nativo (`node:sqlite`), pede Node.js 22.13 ou superior.
 
 Use pelo CLI do oJobinho:
 
