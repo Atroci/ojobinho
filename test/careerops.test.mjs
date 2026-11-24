@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { spawn } from "node:child_process";
 import { mkdtemp, readFile, readdir, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -29,7 +30,7 @@ import { recomendarIntervalo } from "../lib/careerops/schedule.mjs";
 import { adquirirTrava } from "../lib/careerops/lock.mjs";
 import { carregarCapacidades, carregarFontes } from "../lib/careerops/config.mjs";
 import { despachar, validarRegistro } from "../lib/careerops/commands.mjs";
-import { main } from "../ojobinho.mjs";
+import { lerStdin, main } from "../ojobinho.mjs";
 
 const raiz = fileURLToPath(new URL("..", import.meta.url));
 const agora = new Date("2026-11-23T10:00:00.000Z");
@@ -333,4 +334,161 @@ test("CLI scan --json sai pelo ojobinho e o digest cabe numa resposta de chat", 
   const json = JSON.parse(saida.linhas.at(-1));
   assert.equal(json.command, "digest");
   assert.equal(json.count, 0);
+});
+
+function executarCli(base, args, entrada = "") {
+  const cli = fileURLToPath(new URL("../ojobinho.mjs", import.meta.url));
+  return new Promise((resolve, reject) => {
+    const child = spawn(process.execPath, ["--disable-warning=ExperimentalWarning", cli, ...args], {
+      cwd: base,
+      stdio: ["pipe", "pipe", "pipe"],
+    });
+    let stdout = "";
+    let stderr = "";
+    child.stdout.setEncoding("utf8");
+    child.stderr.setEncoding("utf8");
+    child.stdout.on("data", (parte) => { stdout += parte; });
+    child.stderr.on("data", (parte) => { stderr += parte; });
+    const timer = setTimeout(() => {
+      child.kill();
+      reject(new Error("CLI não terminou"));
+    }, 10000);
+    child.on("error", (erro) => {
+      clearTimeout(timer);
+      reject(erro);
+    });
+    child.on("close", (code) => {
+      clearTimeout(timer);
+      resolve({ code, stdout, stderr });
+    });
+    child.stdin.end(entrada);
+  });
+}
+
+test("evaluate --record lê o JSON encaminhado no stdin do processo", async () => {
+  await assert.rejects(() => lerStdin({ isTTY: true }), /pipe/);
+  await assert.rejects(() => lerStdin({ isTTY: false, async *[Symbol.asyncIterator]() {} }), /stdin vazio/);
+
+  const base = await baseVazia();
+  const db = abrirBanco(base);
+  const criada = ingerirVaga(db, "remoteok", {
+    native_id: "1",
+    url: "https://exemplo.test/1",
+    title: "Dev WordPress",
+    company: "Acme",
+    description: "wordpress",
+  }, agora.toISOString());
+  db.close();
+  const corpo = {
+    listing_id: criada.id,
+    profile_id: "emprego",
+    evaluator: "grok",
+    verdict: "maybe",
+    fit_score: 3,
+    model: "grok-test",
+    prompt_version: "avaliar@1",
+    tokens: 4,
+    json: { reasons: ["exemplo"] },
+  };
+  const ok = await executarCli(base, ["evaluate", "--record"], JSON.stringify(corpo));
+  assert.equal(ok.code, 0, ok.stderr);
+  assert.equal(JSON.parse(ok.stdout).recorded, criada.id);
+  const gravado = abrirBanco(base);
+  assert.equal(gravado.prepare("SELECT COUNT(*) AS n FROM evaluations").get().n, 1);
+  gravado.close();
+
+  const vazio = await executarCli(base, ["evaluate", "--record"], "");
+  assert.notEqual(vazio.code, 0);
+  assert.match(vazio.stderr, /stdin vazio/);
+  assert.doesNotMatch(`${vazio.stderr}\n${vazio.stdout}`, /Unexpected end of JSON input/);
+});
+
+test("status --json conta quem ainda não foi avaliado neste perfil e content_hash", async () => {
+  const base = await baseVazia();
+  const regrasFila = {
+    emprego: { include_any: ["wordpress"] },
+    freelance: { include_any: ["loja"], max_age_hours: 72, pay_floor_hourly_usd: 25 },
+  };
+  const db = abrirBanco(base);
+  const quando = agora.toISOString();
+  ingerirVaga(db, "remoteok", { native_id: "1", url: "https://exemplo.test/1", title: "Dev WordPress", company: "Acme", description: "wordpress", location: "Remoto" }, quando);
+  ingerirVaga(db, "remoteok", { native_id: "2", url: "https://exemplo.test/2", title: "Dev WordPress 2", company: "Acme", description: "wordpress", location: "Remoto" }, quando);
+  ingerirVaga(db, "remoteok", { native_id: "3", url: "https://exemplo.test/3", title: "Dev WordPress antiga", company: "Acme", description: "wordpress", location: "Remoto" }, quando);
+  ingerirVaga(db, "remoteok", { native_id: "4", url: "https://exemplo.test/4", title: "Contador", company: "Acme", description: "planilhas", location: "Remoto" }, quando);
+  ingerirVaga(db, "upwork", {
+    native_id: "u1",
+    url: "https://www.upwork.com/jobs/~u1",
+    title: "Loja virtual",
+    company: "Cliente",
+    description: "loja",
+    location: "Remoto",
+    pay_min: 40,
+    pay_max: 40,
+    pay_currency: "USD",
+    pay_period: "hour",
+    posted_at: quando,
+  }, quando);
+  db.prepare("UPDATE listings SET status = 'gone' WHERE native_id = '3'").run();
+  db.close();
+
+  const extras = { regras: regrasFila, agenda, now: agora };
+  const emprego = ioDe();
+  await despachar("evaluate", ["--new", "--profile", "emprego", "--bot", "grok", "--json"], emprego, base, extras);
+  const filaEmprego = JSON.parse(emprego.linhas.at(-1));
+  const freelance = ioDe();
+  await despachar("evaluate", ["--new", "--profile", "freelance", "--bot", "grok", "--json"], freelance, base, extras);
+  const filaFreelance = JSON.parse(freelance.linhas.at(-1));
+  assert.equal(filaEmprego.count, 2);
+  assert.equal(filaFreelance.count, 1);
+
+  const antes = ioDe();
+  await despachar("status", ["--json"], antes, base, extras);
+  assert.deepEqual(JSON.parse(antes.linhas.at(-1)).queue, { emprego: filaEmprego.count, freelance: filaFreelance.count });
+
+  for (const item of filaEmprego.items) {
+    await despachar("evaluate", ["--record"], ioDe(), base, {
+      ...extras,
+      entrada: JSON.stringify({ listing_id: item.id, profile_id: "emprego", evaluator: "grok", verdict: "skip", fit_score: 1, json: {} }),
+    });
+  }
+  const soEmprego = ioDe();
+  await despachar("status", ["--json"], soEmprego, base, extras);
+  assert.deepEqual(JSON.parse(soEmprego.linhas.at(-1)).queue, { emprego: 0, freelance: 1 });
+
+  for (const item of filaFreelance.items) {
+    await despachar("evaluate", ["--record"], ioDe(), base, {
+      ...extras,
+      entrada: JSON.stringify({
+        listing_id: item.id,
+        profile_id: "freelance",
+        evaluator: "grok",
+        verdict: "skip",
+        fit_score: 1,
+        json: { recommendation: "skip", reasons: ["teste"] },
+      }),
+    });
+  }
+  const empregoZero = ioDe();
+  await despachar("evaluate", ["--new", "--profile", "emprego", "--bot", "grok", "--json"], empregoZero, base, extras);
+  const freelanceZero = ioDe();
+  await despachar("evaluate", ["--new", "--profile", "freelance", "--bot", "grok", "--json"], freelanceZero, base, extras);
+  assert.equal(JSON.parse(empregoZero.linhas.at(-1)).count, 0);
+  assert.equal(JSON.parse(freelanceZero.linhas.at(-1)).count, 0);
+  const depois = ioDe();
+  await despachar("status", ["--json"], depois, base, extras);
+  assert.deepEqual(JSON.parse(depois.linhas.at(-1)).queue, { emprego: 0, freelance: 0 });
+  const conferido = abrirBanco(base);
+  assert.ok(conferido.prepare("SELECT COUNT(*) AS n FROM rule_results WHERE profile_id = 'emprego' AND passed = 1").get().n >= 2);
+  conferido.close();
+
+  const db2 = abrirBanco(base);
+  ingerirVaga(db2, "remoteok", { native_id: "1", url: "https://exemplo.test/1", title: "Dev WordPress", company: "Acme", description: "wordpress e seo", location: "Remoto" }, "2026-11-23T18:00:00.000Z");
+  db2.close();
+  const mudouQuando = new Date("2026-11-23T18:00:00.000Z");
+  const mudou = ioDe();
+  await despachar("status", ["--json"], mudou, base, { ...extras, now: mudouQuando });
+  assert.deepEqual(JSON.parse(mudou.linhas.at(-1)).queue, { emprego: 1, freelance: 0 });
+  const filaMudou = ioDe();
+  await despachar("evaluate", ["--new", "--profile", "emprego", "--bot", "grok", "--json"], filaMudou, base, { ...extras, now: mudouQuando });
+  assert.equal(JSON.parse(filaMudou.linhas.at(-1)).count, 1);
 });
