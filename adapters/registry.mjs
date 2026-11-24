@@ -5,7 +5,9 @@ export const IDS_ADAPTADORES = [
   "nodesk", "jobspresso", "getonbrd", "landingjobs", "arbeitnow", "manfred",
   "gupy", "greenhouse", "lever", "ashby", "hackernews", "startup-jobs", "remote-com",
   "net-empregos", "99freelas", "upwork", "workana", "fiverr", "contra",
-  "freelanceradar", "peopleperhour", "wellfound", "computrabajo", "careerops-bridge", "manual",
+  "freelanceradar", "peopleperhour", "wellfound", "computrabajo",
+  "linkedin-email", "freelancer", "ats-dataset", "jobgether", "wordpress-jobs", "fourdayweek",
+  "careerops-bridge", "manual",
 ];
 
 function quebrado(id, erro) {
@@ -59,6 +61,18 @@ export async function executarFonte(fonte, adapter, capacidade, ctx) {
       }),
     ]);
     clearTimeout(estouro);
+    if (resultado?.skipped) {
+      return {
+        ok: true,
+        skipped: String(resultado.skipped),
+        rows: 0,
+        listings: [],
+        errors: [...(resultado.errors ?? [])],
+        complete: false,
+        ms: Date.now() - inicio,
+        error: null,
+      };
+    }
     const listings = [];
     const errors = [...(resultado?.errors ?? [])];
     for (const bruto of resultado?.listings ?? []) {

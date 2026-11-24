@@ -17,3 +17,11 @@ The career-ops provider closure, undici and js-yaml are not included.
 adapters/net-empregos/scan.py is the operator's existing Net-Empregos scanner,
 vendored so the search URLs stay in this repository. The default runtime is
 the Node parser of those same pages.
+
+lib/vendor/hyparquet/ is hyparquet 1.33.1
+(https://github.com/hyparam/hyparquet), Copyright Hyperparam, MIT License.
+See lib/vendor/hyparquet/LICENSE. The Node file-reading entry is not included.
+src/snappy.js includes Snappy decompression by Zhipeng Jia, MIT License.
+The ATS adapter uses this parser to read the public jobs snapshot. It does
+not vendor scraper code from kalil0321/ats-scrapers (Stapply, MIT); it only
+reads the published dataset at storage.stapply.ai.

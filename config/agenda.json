@@ -7,12 +7,18 @@
     "remotive": { "min_interval_minutes": 360, "max_runs_per_day": 4 },
     "99freelas": { "min_interval_minutes": 720, "max_runs_per_day": 2, "max_pages": 3 },
     "net-empregos": { "min_interval_minutes": 240 },
-    "himalayas": { "min_interval_minutes": 240, "max_pages": 2 },
+    "himalayas": { "min_interval_minutes": 360, "max_pages": 2 },
     "hackernews": { "min_interval_minutes": 720 },
     "gupy": { "min_interval_minutes": 360 },
     "getonbrd": { "min_interval_minutes": 360 },
     "landingjobs": { "min_interval_minutes": 360 },
     "manfred": { "min_interval_minutes": 720 },
-    "remote-com": { "min_interval_minutes": 720 }
+    "remote-com": { "min_interval_minutes": 720 },
+    "weworkremotely": { "min_interval_minutes": 360 },
+    "freelancer": { "min_interval_minutes": 1440, "max_runs_per_day": 1 },
+    "ats-dataset": { "min_interval_minutes": 1440, "max_runs_per_day": 1 },
+    "jobgether": { "min_interval_minutes": 720, "max_runs_per_day": 2 },
+    "wordpress-jobs": { "min_interval_minutes": 360 },
+    "fourdayweek": { "min_interval_minutes": 360, "max_runs_per_day": 4 }
   }
 }
