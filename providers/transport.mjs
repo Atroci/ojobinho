@@ -72,6 +72,7 @@ async function obterCorpo(
     accept,
     tipoPermitido,
     mensagemTipo,
+    userAgent,
   } = {},
 ) {
   if (!Array.isArray(hostsPermitidos) || hostsPermitidos.length === 0) {
@@ -86,8 +87,10 @@ async function obterCorpo(
   const timer = setTimeout(() => controller.abort(), timeoutMs);
 
   try {
+    const headers = { accept };
+    if (userAgent) headers["user-agent"] = userAgent;
     const response = await fetchImpl(url.href, {
-      headers: { accept },
+      headers,
       redirect: "error",
       signal: controller.signal,
     });
@@ -131,5 +134,16 @@ export function obterHtml(valorUrl, options = {}) {
     accept: "text/html",
     tipoPermitido: /^text\/html$/i,
     mensagemTipo: "Fonte não respondeu com HTML.",
+  });
+}
+
+const TIPO_TEXTO = /^(?:text\/(?:html|plain|xml)|application\/(?:json|xml|rss\+xml|atom\+xml|octet-stream))$/i;
+
+export function obterTexto(valorUrl, options = {}) {
+  return obterCorpo(valorUrl, {
+    ...options,
+    accept: options.accept ?? "application/json, application/xml, text/xml, application/rss+xml, text/html, text/plain",
+    tipoPermitido: options.tipoPermitido ?? TIPO_TEXTO,
+    mensagemTipo: "Fonte respondeu com tipo de conteúdo não permitido.",
   });
 }

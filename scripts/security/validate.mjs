@@ -35,6 +35,9 @@ const DOCUMENTED_EXAMPLES = new Set([
 ]);
 const PRIVATE_FILES = new Set([
   "config/perfil.md",
+  "config/perfis/emprego.md",
+  "config/perfis/freelance.md",
+  "config/regras.json",
   "curriculo.md",
   "data/pipeline.md",
   "tracker.csv",

@@ -9,6 +9,15 @@ curriculo.md
 tracker.csv
 data/*
 !data/pipeline.example.md
+*.sqlite
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
+*.db
+config/perfis/*
+!config/perfis/*.example.md
+config/regras.json
+config/careerops.local.json
 reports/*
 !reports/.gitkeep
 output/*

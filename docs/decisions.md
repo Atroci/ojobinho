@@ -42,3 +42,11 @@
 - Telemetria removida (cliente nulo), perfil em arquivo 0600 em Linux, `review-each` como único modo, `autonomy grant` recusa, `approval` só `APPROVE SUBMIT`. O candidato continua sendo quem envia.
 - Uma única fonte: este repositório. VPS e agentes (Hermes Agent incluído, ver `hermes/`) clonam e puxam; não existe cópia paralela do motor em outro lugar.
 - Perfil do motor (JSON) e `config/perfil.md` coexistem por enquanto: o JSON alimenta os portões, o Markdown alimenta o relatório do agente. Unificar só quando houver dado de uso.
+
+## [2026-11-23] SQLite como fonte de verdade da coleta
+
+- A fila coletada passa a viver em `data/ojobinho.db`, via `node:sqlite`, no Node.js 22.13 ou superior. Markdown e CSV continuam para perfil, rubrica, tracker e exportação. `data/descobertas.json` segue o `descobrir` antigo e pode ser importado com `migrar-descobertas`.
+- O CI deixa o Node 20 e passa a usar Node 22.
+- Os coletores públicos reimplementam o mapeamento do career-ops (MIT, commit `9d61e5a`) em cima do transporte fail-closed deste repositório. O fechamento inteiro do career-ops, com undici e js-yaml, não entra.
+- A varredura do operador é uma rotina do Grok Bot, não um cron de sistema. `scan --due` obedece ao intervalo em `config/agenda.json`. `tune` só recomenda; não muda o intervalo sozinho.
+- Dois perfis, emprego e freelance, com avaliação por hash de conteúdo. Nada é enviado sem o sim de uma pessoa.

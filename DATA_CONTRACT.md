@@ -27,7 +27,9 @@ Os caminhos abaixo são dados do candidato e ficam ignorados pelo Git:
 
 `data/motor/` guarda o estado do motor determinístico (`lib/motor/README.md`): perfil estruturado e currículo canônico do candidato, ledgers `applications.ndjson` e `outcomes.ndjson` (só crescem), rodadas, fila de atenção e fricção. Nada desse diretório sai da máquina.
 
-`data/descobertas.json` guarda a fila normalizada das fontes públicas configuradas. Cada registro mantém identificador da origem, empresa, URL, primeira e última observação, última checagem e estado `ativa` ou `indisponivel`. Uma falha de fonte não altera o último estado conhecido.
+`data/descobertas.json` guarda a fila antiga do `descobrir`. Cada registro mantém identificador da origem, empresa, URL, primeira e última observação, última checagem e estado `ativa` ou `indisponivel`. Uma falha de fonte não altera o último estado conhecido.
+
+`data/ojobinho.db` é o SQLite da coleta contínua (CareerOps): vagas, corridas, avaliações, rascunhos e funil. Fica ignorado, como o resto de `data/`. `data/agenda.local.json` e `data/shadow/` também. Perfil preenchido em `config/perfis/emprego.md`, `config/perfis/freelance.md` e `config/regras.json` fica de fora do Git; só os `*.example.*` entram. Arquivos `*.sqlite` e `*.db` na raiz também ficam de fora.
 
 IDs e nomes de anexos não aceitam caminhos. Gravações recusam arquivo existente, salvo quando o chamador passa explicitamente `replace: true`.
 
