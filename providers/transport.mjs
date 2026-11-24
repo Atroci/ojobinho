@@ -73,6 +73,9 @@ async function obterCorpo(
     tipoPermitido,
     mensagemTipo,
     userAgent,
+    method,
+    body,
+    headers: headersExtras,
   } = {},
 ) {
   if (!Array.isArray(hostsPermitidos) || hostsPermitidos.length === 0) {
@@ -89,11 +92,26 @@ async function obterCorpo(
   try {
     const headers = { accept };
     if (userAgent) headers["user-agent"] = userAgent;
-    const response = await fetchImpl(url.href, {
+    if (headersExtras && typeof headersExtras === "object") {
+      for (const [chave, valor] of Object.entries(headersExtras)) {
+        if (typeof chave !== "string" || typeof valor !== "string") continue;
+        if (/[\r\n]/.test(chave) || /[\r\n]/.test(valor)) continue;
+        headers[chave.toLowerCase()] = valor;
+      }
+    }
+    const pedido = {
       headers,
       redirect: "error",
       signal: controller.signal,
-    });
+    };
+    if (body != null) {
+      pedido.method = method || "POST";
+      pedido.body = body;
+      if (!headers["content-type"]) headers["content-type"] = "application/json";
+    } else if (method) {
+      pedido.method = method;
+    }
+    const response = await fetchImpl(url.href, pedido);
 
     if (response.redirected || (response.status >= 300 && response.status < 400)) {
       throw new Error("Redirecionamento não permitido.");

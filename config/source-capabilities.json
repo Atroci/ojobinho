@@ -36,7 +36,8 @@
       "application_actions": "no",
       "access_policy": "approved",
       "method": "public-json",
-      "hosts": ["himalayas.app"]
+      "hosts": ["himalayas.app"],
+      "notes": "A busca /jobs/api/search entra só quando params.queries existe. Uma página por consulta, sem o parâmetro page, porque o robots.txt desautoriza paginação. Ficam vagas abertas a Portugal, à UE ou ao mundo, e cujo fuso, se a API mandar, inclui UTC+0 ou UTC-1."
     },
     "jobicy": {
       "profile": ["emprego", "freelance"],
@@ -69,7 +70,8 @@
       "application_actions": "no",
       "access_policy": "approved",
       "method": "public-rss",
-      "hosts": ["weworkremotely.com"]
+      "hosts": ["weworkremotely.com"],
+      "notes": "O feed geral continua. params.extra_feeds soma outros RSS do mesmo host; o padrão publicado é a categoria sales and marketing. O link da vaga permanece no We Work Remotely."
     },
     "nodesk": {
       "profile": ["emprego", "freelance"],
@@ -102,7 +104,8 @@
       "application_actions": "no",
       "access_policy": "approved",
       "method": "public-json",
-      "hosts": ["www.getonbrd.com"]
+      "hosts": ["www.getonbrd.com"],
+      "notes": "params.categories escolhe as categorias. O padrão publicado pede programming e digital-marketing."
     },
     "landingjobs": {
       "profile": ["emprego"],
@@ -367,6 +370,79 @@
       "import": "yes",
       "method": "manual-import",
       "hosts": []
+    },
+    "linkedin-email": {
+      "profile": ["emprego", "freelance"],
+      "discovery": "no",
+      "project_detail": "partial",
+      "client_info": "no",
+      "notifications": "inbound",
+      "application_actions": "no",
+      "access_policy": "denied",
+      "import": "yes",
+      "method": "email-alert",
+      "hosts": [],
+      "notes": "Não busca linkedin.com. O comando ingerir lê um JSON local de alertas já obtidos pelo conector oficial do Gmail. O parser só extrai título, empresa, local e o id em /jobs/view/."
+    },
+    "freelancer": {
+      "profile": ["freelance"],
+      "discovery": "yes",
+      "project_detail": "partial",
+      "client_info": "no",
+      "notifications": "no",
+      "application_actions": "no",
+      "access_policy": "approved",
+      "method": "public-json",
+      "hosts": ["www.freelancer.com"],
+      "notes": "Desligada por padrão. API pública de projetos ativos, um pedido por corrida, cache de 24 h. Sem token a chamada segue sem cabeçalho; HTTP 401 ou 403 sem FREELANCER_TOKEN devolve skipped no-token. O token, se existir, vai só no cabeçalho freelancer-oauth-v1. Ofícios padrão: SEO 38, Google Ads 2356, Google Analytics 298, WordPress 69, PPC 1026, digital marketing 1023."
+    },
+    "ats-dataset": {
+      "profile": ["emprego"],
+      "discovery": "yes",
+      "project_detail": "partial",
+      "client_info": "no",
+      "notifications": "no",
+      "application_actions": "no",
+      "access_policy": "approved",
+      "method": "public-parquet",
+      "hosts": ["storage.stapply.ai"],
+      "notes": "Snapshot diário publicado por kalil0321/ats-scrapers (Stapply). Lê o manifesto e, por intervalo HTTP, só as colunas curtas do Parquet. Greenhouse, Lever, Ashby, Workable, Recruitee, Teamtailor e SmartRecruiters. Fora: Welcome to the Jungle, qualquer ats_type com google, e vaga que não seja Portugal ou remota na UE/mundial. Uma corrida por dia."
+    },
+    "jobgether": {
+      "profile": ["freelance"],
+      "discovery": "yes",
+      "project_detail": "partial",
+      "client_info": "no",
+      "notifications": "no",
+      "application_actions": "no",
+      "access_policy": "approved",
+      "method": "public-json",
+      "hosts": ["jobgether.com", "api.lever.co"],
+      "notes": "POST sem query string em /api/v1/jobs, porque o robots.txt desautoriza URL com ?. contractType padrão freelance. Não abre /offer/. Se a empresa é a Jobgether e o título coincide com o quadro Lever jobgether, a URL canônica passa a ser a do Lever."
+    },
+    "wordpress-jobs": {
+      "profile": ["emprego", "freelance"],
+      "discovery": "yes",
+      "project_detail": "partial",
+      "client_info": "no",
+      "notifications": "no",
+      "application_actions": "no",
+      "access_policy": "approved",
+      "method": "public-rss",
+      "hosts": ["jobs.wordpress.net"],
+      "notes": "RSS público /feed/. O robots.txt só fecha /wp-admin/."
+    },
+    "fourdayweek": {
+      "profile": ["emprego", "freelance"],
+      "discovery": "yes",
+      "project_detail": "partial",
+      "client_info": "no",
+      "notifications": "no",
+      "application_actions": "no",
+      "access_policy": "approved",
+      "method": "public-json",
+      "hosts": ["4dayweek.io"],
+      "notes": "API pública /api/v2/jobs, sem chave. O robots.txt permite /api/v2. No máximo duas páginas. Salário da API vem em centavos."
     }
   }
 }

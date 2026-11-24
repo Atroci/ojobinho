@@ -2,13 +2,13 @@
   "sources": [
     { "id": "remoteok", "adapter": "remoteok", "enabled": true, "profile": ["emprego", "freelance"], "params": {} },
     { "id": "remotive", "adapter": "remotive", "enabled": true, "profile": ["emprego", "freelance"], "params": {} },
-    { "id": "himalayas", "adapter": "himalayas", "enabled": true, "profile": ["emprego", "freelance"], "params": { "max_pages": 2 } },
+    { "id": "himalayas", "adapter": "himalayas", "enabled": true, "profile": ["emprego", "freelance"], "params": { "max_pages": 2, "queries": ["marketing", "seo", "analytics"] } },
     { "id": "jobicy", "adapter": "jobicy", "enabled": true, "profile": ["emprego", "freelance"], "params": {} },
     { "id": "workingnomads", "adapter": "workingnomads", "enabled": true, "profile": ["emprego", "freelance"], "params": {} },
-    { "id": "weworkremotely", "adapter": "weworkremotely", "enabled": true, "profile": ["emprego", "freelance"], "params": {} },
+    { "id": "weworkremotely", "adapter": "weworkremotely", "enabled": true, "profile": ["emprego", "freelance"], "params": { "extra_feeds": ["https://weworkremotely.com/categories/remote-sales-and-marketing-jobs.rss"] } },
     { "id": "nodesk", "adapter": "nodesk", "enabled": true, "profile": ["emprego", "freelance"], "params": {} },
     { "id": "jobspresso", "adapter": "jobspresso", "enabled": true, "profile": ["emprego", "freelance"], "params": { "posts_per_page": 50 } },
-    { "id": "getonbrd", "adapter": "getonbrd", "enabled": true, "profile": ["emprego"], "params": { "categories": ["programming"], "max_pages": 1 } },
+    { "id": "getonbrd", "adapter": "getonbrd", "enabled": true, "profile": ["emprego"], "params": { "categories": ["programming", "digital-marketing"], "max_pages": 1 } },
     { "id": "landingjobs", "adapter": "landingjobs", "enabled": true, "profile": ["emprego"], "params": {} },
     { "id": "arbeitnow", "adapter": "arbeitnow", "enabled": true, "profile": ["emprego"], "params": { "max_pages": 1 } },
     { "id": "manfred", "adapter": "manfred", "enabled": true, "profile": ["emprego"], "params": { "lang": "es" } },
@@ -29,6 +29,12 @@
     { "id": "peopleperhour", "adapter": "peopleperhour", "enabled": false, "profile": ["freelance"], "params": {} },
     { "id": "wellfound", "adapter": "wellfound", "enabled": false, "profile": ["emprego"], "params": {} },
     { "id": "computrabajo", "adapter": "computrabajo", "enabled": false, "profile": ["emprego"], "params": {} },
-    { "id": "careerops-bridge", "adapter": "careerops-bridge", "enabled": false, "profile": ["emprego", "freelance"], "params": {} }
+    { "id": "careerops-bridge", "adapter": "careerops-bridge", "enabled": false, "profile": ["emprego", "freelance"], "params": {} },
+    { "id": "linkedin-email", "adapter": "linkedin-email", "enabled": false, "profile": ["emprego", "freelance"], "params": {} },
+    { "id": "freelancer", "adapter": "freelancer", "enabled": false, "profile": ["freelance"], "params": { "job_ids": [38, 2356, 298, 69, 1026, 1023], "limit": 20 } },
+    { "id": "ats-dataset", "adapter": "ats-dataset", "enabled": true, "profile": ["emprego"], "params": { "max_rows": 2500, "max_bytes": 24000000 } },
+    { "id": "jobgether", "adapter": "jobgether", "enabled": true, "profile": ["freelance"], "params": { "contract_types": ["freelance"], "locations": ["portugal", "europe", "anywhere"], "limit": 25, "max_pages": 1 } },
+    { "id": "wordpress-jobs", "adapter": "wordpress-jobs", "enabled": true, "profile": ["emprego", "freelance"], "params": {} },
+    { "id": "fourdayweek", "adapter": "fourdayweek", "enabled": true, "profile": ["emprego", "freelance"], "params": { "limit": 25, "max_pages": 1 } }
   ]
 }
