@@ -1,12 +1,16 @@
 {
   "emprego": {
-    "include_any": ["wordpress", "seo", "ads", "web", "desenvolvedor", "developer", "marketing", "tracking", "analytics", "frontend", "front-end"],
+    "include_title_any": ["wordpress", "seo", "google ads", "front-end", "desenvolvedor web"],
+    "exclude_title": ["senior data engineer", "account director", "data engineer"],
     "exclude": ["sem remuneração", "trabalho gratuito", "unpaid"],
+    "sources_deny": ["99freelas"],
     "locations_allow": ["portugal", "lisboa", "porto", "brasil", "brazil", "remote", "remoto", "europe", "europa", "worldwide", "anywhere", "emea", "latam"]
   },
   "freelance": {
-    "include_any": ["wordpress", "seo", "ads", "ga4", "tracking", "web", "automation", "desenvolvedor", "developer"],
+    "include_title_any": ["wordpress", "seo", "google ads", "loja online"],
+    "exclude_title": ["account director"],
     "exclude": ["sem remuneração", "trabalho gratuito", "unpaid"],
+    "sources_allow": ["99freelas", "upwork", "workana", "workana-email", "freelanceradar", "freelanceradar-email", "fiverr", "contra", "manual"],
     "max_age_hours": 72,
     "max_proposals": 40,
     "pay_floor_hourly_usd": 25

@@ -40,7 +40,15 @@ node ojobinho.mjs evaluate --new --profile emprego --bot grok --json
 node ojobinho.mjs evaluate --new --profile freelance --bot grok --json
 ```
 
-Saída: `{ "count": 0, "items": [] }` ou itens com `id`, `title`, `company`, `source`, `profile`, `content_hash`. Sem o texto da vaga.
+O padrão devolve no máximo 15 itens. `--limit N` aumenta ou reduz. Saída: `{ "count": 0, "items": [] }` ou itens com `id`, `title`, `company`, `source`, `profile`, `content_hash`. Sem o texto da vaga.
+
+No dia em que a coleta entra no ar, marque o acervo já gravado para nenhum bot avaliá-lo:
+
+```bash
+node ojobinho.mjs scan --baseline --before 2026-11-24T00:00:00.000Z --json
+```
+
+Isso grava `evaluator: baseline` e `verdict: skip`. Não chame modelo para essas linhas.
 
 Para julgar um id:
 

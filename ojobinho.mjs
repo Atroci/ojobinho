@@ -206,7 +206,7 @@ export async function main(args = process.argv.slice(2), io = console, base = pr
     return;
   }
 
-  io.log("Comandos: iniciar | doctor | vagas | vaga <url> | buscar <termo> | portal <url> | descobrir [--dry-run] | capturar <json> | duplicatas <json> | pacote <json> | proximo <status> <data> [n] | historico <id> <json> | greenhouse <board> | lever <site> [global|eu] | motor <area> <acao> [--stdin] | scan --all|--due|--source <id> [--json] | evaluate --new --profile emprego|freelance [--json] | digest --today [--json] | status [--yield] | tune | ingest --source <id> --file <json> | prepare --id <id> | funnel add|list | export --csv | shadow | migrar-descobertas");
+  io.log("Comandos: iniciar | doctor | vagas | vaga <url> | buscar <termo> | portal <url> | descobrir [--dry-run] | capturar <json> | duplicatas <json> | pacote <json> | proximo <status> <data> [n] | historico <id> <json> | greenhouse <board> | lever <site> [global|eu] | motor <area> <acao> [--stdin] | scan --all|--due|--source <id>|--baseline [--before ISO] [--json] | evaluate --new --profile emprego|freelance [--limit N] [--json] | evaluate --baseline --profile emprego|freelance [--before ISO] | digest --today [--json] | status [--yield] | tune | ingest --source <id> --file <json> | prepare --id <id> | funnel add|list | export --csv | shadow | migrar-descobertas");
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
