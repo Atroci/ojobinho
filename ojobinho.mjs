@@ -89,13 +89,30 @@ async function lerEntradaJson(caminho, base) {
   }
 }
 
-export async function main(args = process.argv.slice(2), io = console, base = process.cwd()) {
+function comandoEsperaStdin(comando, valores) {
+  return (comando === "evaluate" || comando === "avaliar") && valores.includes("--record");
+}
+
+export async function lerStdin(stdin = process.stdin) {
+  if (stdin.isTTY) {
+    throw new TypeError("Nada no stdin: evaluate --record lê o JSON da avaliação por um pipe, não do terminal.");
+  }
+  const pedacos = [];
+  for await (const pedaco of stdin) pedacos.push(Buffer.isBuffer(pedaco) ? pedaco : Buffer.from(pedaco));
+  const texto = Buffer.concat(pedacos).toString("utf8");
+  if (!texto.trim()) throw new TypeError("stdin vazio. evaluate --record precisa do JSON da avaliação.");
+  return texto;
+}
+
+export async function main(args = process.argv.slice(2), io = console, base = process.cwd(), extras = {}) {
   const [comando = "ajuda", ...valores] = args;
   const valor = valores.join(" ");
 
   if (COMANDOS.has(comando)) {
     const { despachar } = await import("./lib/careerops/commands.mjs");
-    const codigo = await despachar(comando, valores, io, base);
+    const opcoes = { ...extras };
+    if (comandoEsperaStdin(comando, valores) && opcoes.entrada == null) opcoes.entrada = await lerStdin();
+    const codigo = await despachar(comando, valores, io, base, opcoes);
     if (codigo) process.exitCode = codigo;
     return;
   }
