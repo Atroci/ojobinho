@@ -108,8 +108,14 @@ test("Real Work From Anywhere soma a categoria e filtra pelo location", async ()
   assert.throws(() => resolverFeedsRwfa({ extra_feeds: ["https://evil.example/rss.xml"] }), /host/);
   assert.equal(manterRwfa({ location: "Worldwide" }), true);
   assert.equal(manterRwfa({ location: "Europe" }), true);
+  assert.equal(manterRwfa({ location: "Portugal" }), true);
+  assert.equal(manterRwfa({}), true);
+  assert.equal(manterRwfa({ location: "" }), true);
+  assert.equal(manterRwfa({ location: "   " }), true);
   assert.equal(manterRwfa({ location: "United States" }), false);
-  assert.equal(manterRwfa({ location: "" }), false);
+  assert.equal(manterRwfa({ location: "Canada" }), false);
+  assert.equal(manterRwfa({ location: "APAC" }), false);
+  assert.equal(manterRwfa({ location: "Brazil" }), false);
 
   const xml = await fixture("realworkfromanywhere.xml");
   const feeds = [];
@@ -127,12 +133,16 @@ test("Real Work From Anywhere soma a categoria e filtra pelo location", async ()
     "https://www.realworkfromanywhere.com/remote-sales-and-marketing-jobs/rss.xml",
   ]);
   const vagas = resultado.listings.map(normalizarRwfa).filter(Boolean);
-  assert.deepEqual(vagas.map((vaga) => vaga.title), ["SEO de exemplo", "Marketing Europa"]);
+  assert.deepEqual(vagas.map((vaga) => vaga.title), ["SEO de exemplo", "Marketing Europa", "Sem local"]);
   assert.equal(vagas[0].company, "Oficina");
   assert.equal(vagas[0].location, "Worldwide");
   assert.equal(vagas[0].remote, true);
   assert.equal(vagas[1].location, "Europe");
+  assert.equal(vagas[2].location, "");
+  assert.equal(vagas[2].remote, true);
+  assert.equal(vagas[2].company, "Oeste");
   assert.equal(normalizarRwfa({ title: "Ads", link: "https://www.realworkfromanywhere.com/jobs/x", location: "Canada", author: "Norte" }), null);
+  assert.equal(normalizarRwfa({ title: "Sem campo", link: "https://www.realworkfromanywhere.com/jobs/sem-campo", author: "Oficina" }).remote, true);
 });
 
 test("a16z Speedrun pede source=ojobinho e aplica o filtro", async () => {

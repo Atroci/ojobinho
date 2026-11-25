@@ -466,7 +466,7 @@
       "access_policy": "approved",
       "method": "public-rss",
       "hosts": ["www.realworkfromanywhere.com"],
-      "notes": "RSS público /rss.xml. params.extra_feeds soma outros RSS do mesmo host; o padrão é a categoria sales and marketing em /remote-sales-and-marketing-jobs/rss.xml, publicada em /rss-feeds. O robots.txt permite / e fecha /go/. Fica vaga cujo campo location é remoto mundial, UE ou Portugal. Em 2026-11-25 o RSS não emitia elemento location; sem esse campo o item é descartado. Não se abre a página HTML da listagem. Intervalo de 360 minutos."
+      "notes": "RSS público /rss.xml. params.extra_feeds soma outros RSS do mesmo host; o padrão é a categoria sales and marketing em /remote-sales-and-marketing-jobs/rss.xml, publicada em /rss-feeds. O robots.txt permite / e fecha /go/. Sem campo location o item fica: o quadro inteiro é work-from-anywhere. Com location, fica remoto mundial, UE ou Portugal e sai EUA, Canadá, APAC ou um único país fora da UE. Em 2026-11-25 o RSS não emitia elemento location. Não se abre a página HTML da listagem. Intervalo de 360 minutos."
     },
     "a16z-speedrun": {
       "profile": ["emprego", "freelance"],

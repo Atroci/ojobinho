@@ -57,13 +57,15 @@ export function itensRwfa(xml) {
 }
 
 export function manterRwfa(item) {
-  return localCompativel(item?.location);
+  const location = typeof item?.location === "string" ? item.location.trim() : "";
+  if (!location) return true;
+  return localCompativel(location);
 }
 
 export function normalizarRwfa(item) {
   if (!item || typeof item.title !== "string" || !item.title.trim()) return null;
   const location = typeof item.location === "string" ? item.location.trim() : "";
-  if (!localCompativel(location)) return null;
+  if (!manterRwfa({ location })) return null;
   const url = httpsNoHost(item.link ?? item.url, HOSTS);
   if (!url) return null;
   const author = typeof item.author === "string" ? item.author.trim() : "";
@@ -84,7 +86,7 @@ export function normalizarRwfa(item) {
     title,
     company,
     location,
-    remote: /remote|remoto|anywhere|worldwide|world|global|europe|europa/i.test(`${location} ${title}`),
+    remote: !location || /remote|remoto|anywhere|worldwide|world|global|europe|europa/i.test(`${location} ${title}`),
     description: limitar(item.description),
     posted_at: paraIso(item.pubDate),
     raw: { location, author },
