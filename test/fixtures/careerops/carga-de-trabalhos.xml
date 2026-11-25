@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Ofertas de exemplo</title>
+    <item>
+      <title>Gestor de cliente de exemplo</title>
+      <link>https://cargadetrabalhos.pt/ofertas/gestor-de-cliente-de-exemplo/</link>
+      <dc:creator><![CDATA[Oficina Exemplo]]></dc:creator>
+      <pubDate>Wed, 25 Nov 2026 09:00:00 +0000</pubDate>
+      <description><![CDATA[<p>Acompanhar pedidos de uma loja de exemplo.</p>]]></description>
+      <job:company>Oficina Exemplo</job:company>
+      <job:type>Full Time</job:type>
+      <job:address>Setúbal</job:address>
+      <job:category>Comercial</job:category>
+    </item>
+    <item>
+      <title>Desenho remoto de exemplo</title>
+      <link>https://cargadetrabalhos.pt/ofertas/desenho-remoto-de-exemplo/</link>
+      <pubDate>Tue, 24 Nov 2026 15:00:00 +0000</pubDate>
+      <description><![CDATA[Peças para uma marca fictícia.]]></description>
+      <job:company>Ateliê Norte</job:company>
+      <job:type>Remoto</job:type>
+      <job:address>Santa Maria da Feira</job:address>
+    </item>
+    <item>
+      <title>Fora do host</title>
+      <link>https://evil.example/ofertas/fora/</link>
+      <job:company>Evil</job:company>
+      <job:type>Full Time</job:type>
+      <job:address>Lisboa</job:address>
+    </item>
+  </channel>
+</rss>

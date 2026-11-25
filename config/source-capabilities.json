@@ -196,7 +196,7 @@
       "access_policy": "approved",
       "method": "public-json",
       "hosts": ["hn.algolia.com"],
-      "notes": "Thread mensal Ask HN: Who is hiring. Comentários são texto livre."
+      "notes": "Thread mensal Ask HN: Who is hiring, pelo autor whoishiring, e a thread Ask HN: Freelancer? Seeking freelancer?, pela mesma API do Algolia. Desta só entram comentários de topo que começam com SEEKING FREELANCER, com employment_type freelance. Comentários são texto livre."
     },
     "startup-jobs": {
       "profile": ["emprego"],
@@ -443,6 +443,54 @@
       "method": "public-json",
       "hosts": ["4dayweek.io"],
       "notes": "API pública /api/v2/jobs, sem chave. O robots.txt permite /api/v2. No máximo duas páginas. Salário da API vem em centavos."
+    },
+    "carga-de-trabalhos": {
+      "profile": ["emprego"],
+      "discovery": "yes",
+      "project_detail": "partial",
+      "client_info": "no",
+      "notifications": "no",
+      "application_actions": "no",
+      "access_policy": "approved",
+      "method": "public-rss",
+      "hosts": ["cargadetrabalhos.pt"],
+      "notes": "RSS público /ofertas/feed/. O robots.txt permite / e só fecha /wp-admin/. Intervalo de 360 minutos. Campos: título, empresa (job:company), local (job:address), link, pubDate e descrição."
+    },
+    "realworkfromanywhere": {
+      "profile": ["emprego", "freelance"],
+      "discovery": "yes",
+      "project_detail": "partial",
+      "client_info": "no",
+      "notifications": "no",
+      "application_actions": "no",
+      "access_policy": "approved",
+      "method": "public-rss",
+      "hosts": ["www.realworkfromanywhere.com"],
+      "notes": "RSS público /rss.xml. params.extra_feeds soma outros RSS do mesmo host; o padrão é a categoria sales and marketing em /remote-sales-and-marketing-jobs/rss.xml, publicada em /rss-feeds. O robots.txt permite / e fecha /go/. Sem campo location o item fica: o quadro inteiro é work-from-anywhere. Com location, fica remoto mundial, UE ou Portugal e sai EUA, Canadá, APAC ou um único país fora da UE. Em 2026-11-25 o RSS não emitia elemento location. Não se abre a página HTML da listagem. Intervalo de 360 minutos."
+    },
+    "a16z-speedrun": {
+      "profile": ["emprego", "freelance"],
+      "discovery": "yes",
+      "project_detail": "partial",
+      "client_info": "no",
+      "notifications": "no",
+      "application_actions": "no",
+      "access_policy": "approved",
+      "method": "public-json",
+      "hosts": ["speedrun-talent-network.com"],
+      "notes": "GET /api/v1/jobs sem chave, com source=ojobinho. O robots.txt permite / e fecha o honeypot /jobs/*-ad00000, que o adaptador descarta. Descarta vaga cujo location restringe a EUA, Canadá, APAC ou um único país fora da UE. Fica remoto mundial, UE ou Portugal. No máximo duas páginas. Intervalo de 720 minutos e no máximo 2 corridas por dia."
+    },
+    "joonow": {
+      "profile": ["emprego"],
+      "discovery": "yes",
+      "project_detail": "partial",
+      "client_info": "no",
+      "notifications": "no",
+      "application_actions": "no",
+      "access_policy": "approved",
+      "method": "public-json",
+      "hosts": ["www.joonow.com"],
+      "notes": "GET /api/v1/jobs, a API documentada em /pt-br/desenvolvedores (termos de 3/11/2026, aceitos pelo dono do repositório). Sem chave, 10 chamadas por minuto por IP. JOONOW_API_KEY, se existir, vai só no cabeçalho X-Api-Key e não entra na URL nem no log. O robots.txt fecha /api/ e qualquer URL com ?, e abre /api/v1/openapi.json; a coleta usa a API publicada, não o HTML. Cada item guarda url, applyUrl e attribution em raw_json. Os termos pedem atualizar o cache em até 24 h, não descartar anúncio aberto mais velho: o intervalo de 720 minutos refresca a página pedida. Entre páginas há pausa de 7 s, no máximo 3 páginas. Não abre /go/ nem /candidatar."
     }
   }
 }

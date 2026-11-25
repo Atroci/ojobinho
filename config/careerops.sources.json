@@ -35,6 +35,10 @@
     { "id": "ats-dataset", "adapter": "ats-dataset", "enabled": true, "profile": ["emprego"], "params": { "max_rows": 2500, "max_bytes": 24000000 } },
     { "id": "jobgether", "adapter": "jobgether", "enabled": true, "profile": ["freelance"], "params": { "contract_types": ["freelance"], "locations": ["portugal", "europe", "anywhere"], "limit": 25, "max_pages": 1 } },
     { "id": "wordpress-jobs", "adapter": "wordpress-jobs", "enabled": true, "profile": ["emprego", "freelance"], "params": {} },
-    { "id": "fourdayweek", "adapter": "fourdayweek", "enabled": true, "profile": ["emprego", "freelance"], "params": { "limit": 25, "max_pages": 1 } }
+    { "id": "fourdayweek", "adapter": "fourdayweek", "enabled": true, "profile": ["emprego", "freelance"], "params": { "limit": 25, "max_pages": 1 } },
+    { "id": "carga-de-trabalhos", "adapter": "carga-de-trabalhos", "enabled": true, "profile": ["emprego"], "params": {} },
+    { "id": "realworkfromanywhere", "adapter": "realworkfromanywhere", "enabled": true, "profile": ["emprego", "freelance"], "params": { "extra_feeds": ["https://www.realworkfromanywhere.com/remote-sales-and-marketing-jobs/rss.xml"] } },
+    { "id": "a16z-speedrun", "adapter": "a16z-speedrun", "enabled": true, "profile": ["emprego", "freelance"], "params": { "source": "ojobinho", "page_size": 50, "max_pages": 1 } },
+    { "id": "joonow", "adapter": "joonow", "enabled": true, "profile": ["emprego"], "params": { "country": "BR", "limit": 50, "max_pages": 1 } }
   ]
 }

@@ -1,0 +1,40 @@
+{
+  "jobs": [
+    {
+      "id": "pt-demo-1",
+      "title": "SEO de exemplo",
+      "company": "Oficina",
+      "location": "Lisbon, Portugal",
+      "remote": true,
+      "workplace_type": "Remote",
+      "employment_type": "FullTime",
+      "url": "https://speedrun-talent-network.com/jobs/seo-de-exemplo-oficina-pt-demo-1",
+      "published_at": "2026-11-20T00:00:00.000Z",
+      "comp_min": 40000,
+      "comp_max": 50000,
+      "comp_currency": "eur",
+      "comp_period": "year"
+    },
+    {
+      "id": "us-demo-2",
+      "title": "Ads nos EUA",
+      "company": "Norte",
+      "location": "United States - Remote",
+      "remote": true,
+      "workplace_type": "Remote",
+      "employment_type": "FullTime",
+      "url": "https://speedrun-talent-network.com/jobs/ads-eua-norte-us-demo-2"
+    },
+    {
+      "id": "honeypot-demo",
+      "title": "Isca",
+      "company": "Isca",
+      "location": "Portugal",
+      "remote": true,
+      "url": "https://speedrun-talent-network.com/jobs/isca-ad00000"
+    }
+  ],
+  "has_more": false,
+  "page": 0,
+  "source": "ojobinho"
+}

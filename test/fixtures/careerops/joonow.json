@@ -1,0 +1,32 @@
+{
+  "data": [
+    {
+      "id": "demo000001",
+      "title": "Analista de dados de exemplo",
+      "url": "https://www.joonow.com/pt-br/vaga/analista-de-dados-de-exemplo-demo000001",
+      "applyUrl": "https://www.joonow.com/go/demo000001",
+      "company": { "id": "emp0000001", "name": "Oficina Exemplo", "url": "https://www.joonow.com/pt-br/empresas/oficina-exemplo-emp0000001" },
+      "location": { "city": "Campinas", "region": "SP", "country": "BR" },
+      "workModel": "Remote",
+      "employmentType": "FullTime",
+      "salary": { "min": 6000, "max": 8000, "currency": "BRL", "period": "Month" },
+      "postedAt": "2026-11-01T12:00:00Z"
+    },
+    {
+      "id": "demo000002",
+      "title": "Sem URL",
+      "url": "https://evil.example/vaga/demo000002",
+      "company": { "name": "Fora" },
+      "location": { "city": "Recife", "region": "PE", "country": "BR" },
+      "workModel": "OnSite",
+      "employmentType": "Contract",
+      "postedAt": "2026-11-24T12:00:00Z"
+    }
+  ],
+  "total": 2,
+  "nextCursor": null,
+  "attribution": {
+    "text": "Vagas via Joonow",
+    "url": "https://www.joonow.com/pt-br/vagas?q=exemplo"
+  }
+}
