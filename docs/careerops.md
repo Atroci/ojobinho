@@ -30,9 +30,38 @@ Sem `--json`, a última linha é `CAREEROPS_SUMMARY` mais o mesmo objeto.
 
 `node ojobinho.mjs status --yield --json` mostra a mesma conta junto da saúde das fontes.
 
-## Perfis
+## Perfis e filtro
 
-Emprego usa `modes/avaliar.md`. Freelance usa `modes/avaliar-freelance.md`. Os valores reais de preço e portfólio ficam em `config/perfis/*.md` e `config/regras.json`, ambos fora do Git. O repositório só traz exemplo.
+Emprego usa `modes/avaliar.md`. Freelance usa `modes/avaliar-freelance.md`. Os valores reais de preço e portfólio ficam em `config/perfis/*.md` e `config/regras.json`, ambos fora do Git. O repositório só traz `config/regras.example.json`.
+
+Cada termo do filtro é uma palavra ou expressão inteira, com acento e com ponto (`next.js`, `google ads`). `ads` não entra em `leads`, e `web` não entra em `website`. A sigla solta `gtm` continua batendo no texto que diz só "GTM"; não use essa sigla se o que você quer é Google Tag Manager.
+
+Chaves de `config/regras.json`, por perfil (`emprego` e `freelance`):
+
+| Chave | Efeito |
+|---|---|
+| `include_any` | Se existir, pelo menos um termo precisa aparecer no texto todo (título, empresa, local, descrição e etiquetas). Configuração antiga continua valendo. Se `include_title_any` também existir, esta chave passa a exigir o termo só na descrição. |
+| `include_title_any` | Se existir, é obrigatória: pelo menos um termo no título ou nas etiquetas. Menção só na descrição não passa. |
+| `exclude` | Qualquer termo no texto todo elimina a vaga. |
+| `exclude_title` | Qualquer termo no título elimina a vaga. |
+| `sources_allow` | Se existir, só essas fontes entram no perfil. |
+| `sources_deny` | Essas fontes ficam de fora. Vale mesmo com `sources_allow`. |
+| `locations_allow` | Locais aceitos. Vazio no anúncio não reprova. Remoto passa. |
+| `max_age_hours` | Idade máxima em marketplace. |
+| `max_proposals` | Teto de propostas. |
+| `pay_floor_hourly_usd` | Piso por hora em USD, quando a vaga publica os dois. |
+| `pay_floor_fixed` e `pay_floor_currency` | Piso de projeto fechado. |
+
+`evaluate --new` devolve no máximo 15 vagas. `--limit N` muda o teto.
+
+O primeiro scan deixa um acervo antigo na fila. Para marcá-lo como visto, sem modelo:
+
+```bash
+node ojobinho.mjs evaluate --baseline --profile emprego --before 2026-11-24T00:00:00.000Z --json
+node ojobinho.mjs scan --baseline --before 2026-11-24T00:00:00.000Z --json
+```
+
+Cada vaga com `first_seen_at` até essa data ganha avaliação `evaluator: baseline`, `verdict: skip`, motivo `baseline`. `evaluate --new` não a devolve, para nenhum bot. Vaga vista depois, ou cujo texto mude, volta para a fila. Sem `--before`, o corte é o acervo ativo inteiro.
 
 Uma vaga é avaliada uma vez por perfil, avaliador e hash de conteúdo. Mudou o texto que entra na decisão, o hash muda e a vaga volta para `evaluate --new`.
 

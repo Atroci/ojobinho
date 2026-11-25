@@ -50,13 +50,18 @@ export function normalizarManfred(oferta) {
   };
 }
 
+export function urlManfred(params = {}) {
+  const lang = String(params.lang ?? "ES").trim().toUpperCase();
+  if (lang !== "EN" && lang !== "ES") throw new Error("manfred: lang deve ser EN ou ES");
+  return `https://www.getmanfred.com/api/v2/public/offers?lang=${lang}`;
+}
+
 export default {
   id: "manfred",
   profile: ["emprego"],
   hosts: HOSTS,
   async fetch(params, ctx) {
-    const lang = params.lang === "en" ? "en" : "es";
-    const json = await buscarJson(`https://www.getmanfred.com/api/v2/public/offers?lang=${lang}`, HOSTS, ctx);
+    const json = await buscarJson(urlManfred(params), HOSTS, ctx);
     if (!Array.isArray(json)) throw new Error("manfred: resposta não é uma lista");
     return { listings: json, errors: [] };
   },

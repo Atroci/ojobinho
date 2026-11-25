@@ -138,7 +138,8 @@
       "application_actions": "no",
       "access_policy": "approved",
       "method": "public-json",
-      "hosts": ["www.getmanfred.com"]
+      "hosts": ["www.getmanfred.com"],
+      "notes": "A API pública exige lang=EN ou lang=ES em maiúsculas. lang=es responde HTTP 400 desde 2026-11-24."
     },
     "gupy": {
       "profile": ["emprego"],

@@ -11,7 +11,7 @@
     { "id": "getonbrd", "adapter": "getonbrd", "enabled": true, "profile": ["emprego"], "params": { "categories": ["programming", "digital-marketing"], "max_pages": 1 } },
     { "id": "landingjobs", "adapter": "landingjobs", "enabled": true, "profile": ["emprego"], "params": {} },
     { "id": "arbeitnow", "adapter": "arbeitnow", "enabled": true, "profile": ["emprego"], "params": { "max_pages": 1 } },
-    { "id": "manfred", "adapter": "manfred", "enabled": true, "profile": ["emprego"], "params": { "lang": "es" } },
+    { "id": "manfred", "adapter": "manfred", "enabled": true, "profile": ["emprego"], "params": { "lang": "ES" } },
     { "id": "gupy", "adapter": "gupy", "enabled": true, "profile": ["emprego"], "params": { "keywords": ["wordpress", "seo"], "limit": 20 } },
     { "id": "hackernews", "adapter": "hackernews", "enabled": true, "profile": ["emprego", "freelance"], "params": { "max_comments": 30 } },
     { "id": "startup-jobs", "adapter": "startup-jobs", "enabled": true, "profile": ["emprego"], "params": {} },
