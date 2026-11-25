@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Remote jobs de exemplo</title>
+    <item>
+      <title>SEO de exemplo at Oficina</title>
+      <link>https://www.realworkfromanywhere.com/jobs/seo-de-exemplo-oficina-1</link>
+      <pubDate>Tue, 24 Nov 2026 12:00:00 GMT</pubDate>
+      <author>Oficina</author>
+      <location>Worldwide</location>
+      <description><![CDATA[<p>Conteúdo de uma vaga fictícia, aberta ao mundo.</p>]]></description>
+    </item>
+    <item>
+      <title>Ads só nos EUA at Norte</title>
+      <link>https://www.realworkfromanywhere.com/jobs/ads-eua-norte-2</link>
+      <pubDate>Mon, 23 Nov 2026 12:00:00 GMT</pubDate>
+      <author>Norte</author>
+      <location>United States</location>
+      <description><![CDATA[<p>Vaga fictícia restrita.</p>]]></description>
+    </item>
+    <item>
+      <title>Marketing Europa at Sul</title>
+      <link>https://www.realworkfromanywhere.com/jobs/marketing-europa-sul-3</link>
+      <pubDate>Sun, 22 Nov 2026 12:00:00 GMT</pubDate>
+      <author>Sul</author>
+      <location>Europe</location>
+      <description><![CDATA[<p>Vaga fictícia na UE.</p>]]></description>
+    </item>
+    <item>
+      <title>Sem local at Oeste</title>
+      <link>https://www.realworkfromanywhere.com/jobs/sem-local-oeste-4</link>
+      <pubDate>Sat, 21 Nov 2026 12:00:00 GMT</pubDate>
+      <author>Oeste</author>
+      <description><![CDATA[<p>O feed real não traz location. Este item também não.</p>]]></description>
+    </item>
+  </channel>
+</rss>

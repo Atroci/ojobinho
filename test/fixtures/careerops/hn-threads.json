@@ -1,0 +1,38 @@
+{
+  "hiringSearch": {
+    "hits": [
+      { "objectID": "101", "title": "Ask HN: Who is hiring? (November 2026)" }
+    ]
+  },
+  "hiringItem": {
+    "children": [
+      { "id": 1001, "text": "Oficina | SEO de exemplo | Lisbon\nRemote" },
+      {
+        "id": 1002,
+        "text": "Comentário solto, sem pedido.",
+        "children": [
+          { "id": 1003, "text": "SEEKING FREELANCER | não entra, é resposta" }
+        ]
+      }
+    ]
+  },
+  "freelancerSearch": {
+    "hits": [
+      { "objectID": "202", "title": "Ask HN: Freelancer? Seeking freelancer? (November 2026)" },
+      { "objectID": "201", "title": "Ask HN: Freelancer? Seeking freelancer? (October 2026)" }
+    ]
+  },
+  "freelancerItem": {
+    "children": [
+      { "id": 2001, "text": "SEEKING FREELANCER | SEO de exemplo | Lisbon | Oficina | Remote" },
+      { "id": 2002, "text": "SEEKING WORK | Dev de exemplo | Berlin\nRemote" },
+      {
+        "id": 2003,
+        "text": "Alguém viu o fio?",
+        "children": [
+          { "id": 2004, "text": "SEEKING FREELANCER | resposta aninhada | Porto" }
+        ]
+      }
+    ]
+  }
+}

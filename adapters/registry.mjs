@@ -7,6 +7,7 @@ export const IDS_ADAPTADORES = [
   "net-empregos", "99freelas", "upwork", "workana", "fiverr", "contra",
   "freelanceradar", "peopleperhour", "wellfound", "computrabajo",
   "linkedin-email", "freelancer", "ats-dataset", "jobgether", "wordpress-jobs", "fourdayweek",
+  "carga-de-trabalhos", "realworkfromanywhere", "a16z-speedrun", "joonow",
   "careerops-bridge", "manual",
 ];
 

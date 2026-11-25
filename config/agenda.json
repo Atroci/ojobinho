@@ -19,6 +19,10 @@
     "ats-dataset": { "min_interval_minutes": 1440, "max_runs_per_day": 1 },
     "jobgether": { "min_interval_minutes": 720, "max_runs_per_day": 2 },
     "wordpress-jobs": { "min_interval_minutes": 360 },
-    "fourdayweek": { "min_interval_minutes": 360, "max_runs_per_day": 4 }
+    "fourdayweek": { "min_interval_minutes": 360, "max_runs_per_day": 4 },
+    "carga-de-trabalhos": { "min_interval_minutes": 360 },
+    "realworkfromanywhere": { "min_interval_minutes": 360 },
+    "a16z-speedrun": { "min_interval_minutes": 720, "max_runs_per_day": 2 },
+    "joonow": { "min_interval_minutes": 720 }
   }
 }
