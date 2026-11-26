@@ -35,6 +35,22 @@
     { "id": "ats-dataset", "adapter": "ats-dataset", "enabled": true, "profile": ["emprego"], "params": { "max_rows": 2500, "max_bytes": 24000000 } },
     { "id": "jobgether", "adapter": "jobgether", "enabled": true, "profile": ["freelance"], "params": { "contract_types": ["freelance"], "locations": ["portugal", "europe", "anywhere"], "limit": 25, "max_pages": 1 } },
     { "id": "wordpress-jobs", "adapter": "wordpress-jobs", "enabled": true, "profile": ["emprego", "freelance"], "params": {} },
-    { "id": "fourdayweek", "adapter": "fourdayweek", "enabled": true, "profile": ["emprego", "freelance"], "params": { "limit": 25, "max_pages": 1 } }
+    { "id": "fourdayweek", "adapter": "fourdayweek", "enabled": true, "profile": ["emprego", "freelance"], "params": { "limit": 25, "max_pages": 1 } },
+    {
+      "id": "oracle-hcm",
+      "adapter": "oracle-hcm",
+      "enabled": true,
+      "profile": ["emprego"],
+      "params": {
+        "limit": 25,
+        "max_pages": 20,
+        "tenants": [
+          { "host": "estm.fa.em2.oraclecloud.com", "siteNumber": "CX_1", "company": "UNDP" },
+          { "host": "estm.fa.em2.oraclecloud.com", "siteNumber": "CX_1001", "company": "UN Women" },
+          { "host": "fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com", "siteNumber": "CX_1", "company": "Nokia", "locations": ["Portugal", "Remote"] },
+          { "host": "ecyq.fa.em2.oraclecloud.com", "siteNumber": "CX_1", "company": "DNV" }
+        ]
+      }
+    }
   ]
 }

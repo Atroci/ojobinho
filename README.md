@@ -89,6 +89,8 @@ node ojobinho.mjs scan --due --json
 
 O intervalo de cada fonte está em `config/agenda.json`. `tune` recomenda acelerar ou desacelerar a partir do rendimento medido. O resumo do dia (`digest --today`) sai em markdown curto para o chat do Grok Bot. A medição de sete dias, antes de desligar qualquer rotina antiga, está em [CareerOps](docs/careerops.md). A skill que o bot instala está em [docs/skills/ojobinho/SKILL.md](docs/skills/ojobinho/SKILL.md).
 
+A fonte `oracle-hcm` lê só o JSON público de carreiras Oracle Recruiting Cloud, em hosts `*.oraclecloud.com` já allowlisted (UNDP, UN Women, Nokia e DNV). A Oracle documenta esses endpoints como uso interno, então a coleta é lenta: no máximo duas vezes por dia, sem login e sem abrir formulário.
+
 Nada disso envia candidatura. Upwork, Workana e Freelanceradar não são raspados.
 
 ## Lista pública de oportunidades
