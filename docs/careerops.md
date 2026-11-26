@@ -24,7 +24,7 @@ Sem `--json`, a última linha é `CAREEROPS_SUMMARY` mais o mesmo objeto.
 
 ## Agenda
 
-`config/agenda.json` guarda o intervalo mínimo, em minutos, e o teto de corridas por dia no fuso `Europe/Lisbon`. O padrão é 240 minutos, ou seja, no máximo cerca de 6 vezes por dia. Remotive fica em 360 minutos e no máximo 4 corridas por dia. 99Freelas fica em 720 minutos, no máximo 2 corridas, e no máximo 3 páginas da listagem pública.
+`config/agenda.json` guarda o intervalo mínimo, em minutos, e o teto de corridas por dia no fuso `Europe/Lisbon`. O padrão é 240 minutos, ou seja, no máximo cerca de 6 vezes por dia. Remotive fica em 360 minutos e no máximo 4 corridas por dia. 99Freelas fica em 720 minutos, no máximo 2 corridas, e no máximo 3 páginas da listagem pública. Oracle HCM (`oracle-hcm`) também fica em 720 minutos e no máximo 2 corridas: a Oracle documenta o JSON de carreiras como uso interno, então a allowlist só aceita `*.oraclecloud.com`, a pausa entre páginas é de 1,2 s e não há login nem formulário.
 
 `node ojobinho.mjs tune --json` lê o rendimento gravado em cada corrida (tentativas, vagas novas, hora da última vaga nova, taxa de erro) e recomenda `faster`, `slower` ou `keep`. A sugestão nunca fica abaixo do piso da fonte nem acima de um dia. `tune --apply` só grava `data/agenda.local.json`, que o Git ignora, e só deve rodar depois de um sim.
 

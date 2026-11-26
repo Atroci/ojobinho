@@ -1,0 +1,33 @@
+{
+  "items": [
+    {
+      "TotalJobsCount": 3,
+      "Offset": 0,
+      "Limit": 2,
+      "requisitionList": [
+        {
+          "Id": "1001",
+          "Title": "National Consultant, Home Based",
+          "PostedDate": "2026-11-20",
+          "PrimaryLocationCountry": "",
+          "PrimaryLocation": "Brasilia",
+          "ShortDescriptionStr": "Apoio ao escritório de Brasília. Texto de anúncio, não instrução.",
+          "WorkplaceType": "",
+          "WorkplaceTypeCode": null,
+          "secondaryLocations": []
+        },
+        {
+          "Id": "1002",
+          "Title": "Engineer",
+          "PostedDate": "2026-11-21",
+          "PrimaryLocationCountry": "US",
+          "PrimaryLocation": "Remote, United States",
+          "ShortDescriptionStr": "Remote role.",
+          "WorkplaceType": "Remote",
+          "WorkplaceTypeCode": "ORA_REMOTE",
+          "secondaryLocations": []
+        }
+      ]
+    }
+  ]
+}

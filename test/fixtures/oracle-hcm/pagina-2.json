@@ -1,0 +1,27 @@
+{
+  "items": [
+    {
+      "TotalJobsCount": 3,
+      "Offset": 2,
+      "Limit": 2,
+      "requisitionList": [
+        {
+          "Id": "1003",
+          "Title": "Security Analyst",
+          "PostedDate": "2026-11-22",
+          "PrimaryLocationCountry": "PT",
+          "PrimaryLocation": "Lisbon, Portugal",
+          "ShortDescriptionStr": "Híbrido em Lisboa.",
+          "WorkplaceType": "Hybrid",
+          "WorkplaceTypeCode": "ORA_HYBRID",
+          "secondaryLocations": [
+            {
+              "Name": "India",
+              "CountryCode": "IN"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -443,6 +443,22 @@
       "method": "public-json",
       "hosts": ["4dayweek.io"],
       "notes": "API pública /api/v2/jobs, sem chave. O robots.txt permite /api/v2. No máximo duas páginas. Salário da API vem em centavos."
+    },
+    "oracle-hcm": {
+      "profile": ["emprego"],
+      "discovery": "yes",
+      "project_detail": "partial",
+      "client_info": "no",
+      "notifications": "no",
+      "application_actions": "no",
+      "access_policy": "approved",
+      "method": "public-json",
+      "hosts": [
+        "estm.fa.em2.oraclecloud.com",
+        "fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com",
+        "ecyq.fa.em2.oraclecloud.com"
+      ],
+      "notes": "JSON anônimo de carreiras Oracle Recruiting Cloud, só em hosts *.oraclecloud.com da allowlist. A Oracle documenta esses endpoints como uso interno: no máximo 20 páginas por tenant, pausa de 1,2 s e no máximo duas corridas por dia. Sem login, sem formulário e sem o detalhe da vaga. Nokia entra por location=Portugal e pela faceta ORA_REMOTE, porque location=Remote não restringe a lista. Ficam PT, BR, UE/EEE, ou título/local com remote, home based, remoto ou teletrabalho. Remoto só EUA/Canadá sai."
     }
   }
 }

@@ -1,0 +1,22 @@
+{
+  "items": [
+    {
+      "TotalJobsCount": 1,
+      "Offset": 0,
+      "Limit": 25,
+      "requisitionList": [
+        {
+          "Id": "2001",
+          "Title": "Maritime Surveyor",
+          "PostedDate": "2026-11-18",
+          "PrimaryLocationCountry": "PT",
+          "PrimaryLocation": "Lisbon, Portugal",
+          "ShortDescriptionStr": "Vaga de exemplo.",
+          "WorkplaceType": "Onsite",
+          "WorkplaceTypeCode": "ORA_ON_SITE",
+          "secondaryLocations": []
+        }
+      ]
+    }
+  ]
+}
